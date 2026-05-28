@@ -20,6 +20,7 @@ body {
   color: var(--text);
   background: var(--white);
   font-family: Poppins, Montserrat, Arial, sans-serif;
+  overflow-x: hidden;
 }
 
 button {
@@ -1166,12 +1167,14 @@ p {
 }
 
 .contact-actions a {
-  width: max-content;
+  width: fit-content;
+  max-width: 100%;
   color: var(--navy);
   font-size: 22px;
   font-weight: 900;
   text-decoration: none;
   border-bottom: 2px solid var(--teal);
+  overflow-wrap: anywhere;
 }
 
 .contact-panel {
@@ -1437,6 +1440,20 @@ p {
     gap: 18px;
   }
 
+  .hero-section {
+    grid-template-columns: minmax(0, 0.86fr) minmax(360px, 1fr);
+    gap: 40px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(42px, 5vw, 58px);
+  }
+
+  .hero-visual {
+    min-height: 360px;
+    height: min(430px, 54vh);
+  }
+
   .intro-section,
   .management-section,
   .credibility-section,
@@ -1475,6 +1492,67 @@ p {
 
   .footer-main {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-section,
+  .products-hero,
+  .contact-page,
+  .careers-hero,
+  .career-apply {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-section {
+    gap: 34px;
+    min-height: auto;
+    padding: 58px 0;
+  }
+
+  .hero-copy {
+    max-width: 680px;
+  }
+
+  .hero-visual {
+    min-height: 340px;
+    height: 390px;
+    clip-path: none;
+  }
+
+  .products-hero,
+  .contact-page,
+  .careers-hero {
+    gap: 42px;
+    padding-top: 80px;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 48px 34px;
+  }
+
+  .career-focus {
+    grid-template-columns: 1fr;
+  }
+
+  .career-focus article,
+  .career-focus article + article {
+    padding: 28px 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .career-focus article:last-child {
+    border-bottom: 0;
+  }
+
+  .career-actions {
+    min-width: 0;
+  }
+
+  .footer-main {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1521,12 +1599,13 @@ p {
   .hero-section {
     grid-template-columns: 1fr;
     min-height: auto;
-    gap: 34px;
-    padding: 64px 0 52px;
+    gap: 28px;
+    padding: 48px 0 44px;
   }
 
   .hero-copy h1 {
-    font-size: 44px;
+    font-size: clamp(38px, 11vw, 48px);
+    line-height: 0.96;
   }
 
   .slide-dots {
@@ -1534,14 +1613,29 @@ p {
   }
 
   .hero-visual {
-    height: auto;
-    min-height: 260px;
+    height: 300px;
+    min-height: 0;
     clip-path: none;
-    opacity: 0.82;
+    opacity: 1;
+  }
+
+  .hero-visual::after {
+    width: 7px;
   }
 
   .intro-section {
-    padding-bottom: 70px;
+    padding: 44px 0 70px;
+    gap: 42px;
+  }
+
+  .experience-box {
+    padding: 28px 22px;
+    font-size: 24px;
+  }
+
+  .capsules {
+    max-height: 360px;
+    object-fit: cover;
   }
 
   .capability-map {
@@ -1608,7 +1702,48 @@ p {
   .directors-section,
   .careers-hero,
   .career-apply {
-    padding: 80px 0;
+    padding: 64px 0;
+  }
+
+  .products-hero h1,
+  .contact-copy h1,
+  .careers-hero h1 {
+    font-size: clamp(40px, 12vw, 54px);
+  }
+
+  .products-hero img {
+    max-height: 330px;
+    object-fit: cover;
+  }
+
+  .products-grid {
+    gap: 44px;
+  }
+
+  .product-group h1 {
+    font-size: 24px;
+  }
+
+  .product-group img {
+    height: 170px;
+    margin-bottom: 18px;
+  }
+
+  .product-trigger {
+    min-height: 54px;
+    font-size: 17px;
+  }
+
+  .medicine-list p {
+    font-size: 15px;
+  }
+
+  .contact-actions a {
+    font-size: 18px;
+  }
+
+  .contact-panel {
+    padding: 26px;
   }
 
   .careers-hero,
@@ -1656,5 +1791,108 @@ p {
   .footer-main {
     padding: 70px 0;
     gap: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-inner,
+  .nav-inner,
+  .hero-section,
+  .intro-section,
+  .credibility-section,
+  .section-heading,
+  .services-grid,
+  .portfolio-explorer,
+  .journey-line,
+  .research-panel,
+  .profile-layout,
+  .products-hero,
+  .products-section,
+  .spotlight-grid,
+  .therapeutic-list,
+  .contact-page,
+  .careers-hero,
+  .career-focus,
+  .career-apply,
+  .footer-main {
+    width: min(100% - 28px, var(--max));
+  }
+
+  .topbar-inner {
+    align-items: flex-start;
+  }
+
+  .brand {
+    width: 145px;
+  }
+
+  .nav-links {
+    top: 138px;
+  }
+
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 1.8px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(34px, 10.5vw, 42px);
+  }
+
+  .hero-visual {
+    height: 240px;
+  }
+
+  .primary-button {
+    min-width: 116px;
+  }
+
+  .capability-copy h2,
+  .section-heading h2,
+  .credibility-copy h2,
+  .assurance-copy h2,
+  .management-section h1 {
+    font-size: clamp(30px, 9vw, 38px);
+  }
+
+  .services-grid {
+    gap: 18px;
+  }
+
+  .service-tile h3 {
+    min-height: 86px;
+    padding: 22px 18px;
+    font-size: 16px;
+  }
+
+  .assurance-copy {
+    padding: 54px 18px 80px;
+  }
+
+  .doctor-image {
+    min-height: 330px;
+  }
+
+  .area-detail {
+    padding: 30px 24px;
+  }
+
+  .research-copy {
+    padding: 34px 24px;
+  }
+
+  .profile-card,
+  .profile-content article {
+    padding: 24px;
+  }
+
+  .floating-contact {
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .floating-contact a {
+    width: 44px;
+    height: 44px;
   }
 }
