@@ -132,6 +132,7 @@ button {
   position: relative;
   z-index: 2;
   max-width: 560px;
+  animation: heroCopyIn 520ms ease both;
 }
 
 .eyebrow {
@@ -201,6 +202,7 @@ p {
   object-fit: cover;
   object-position: center;
   filter: saturate(1.08) contrast(1.02);
+  animation: heroImageIn 520ms ease both;
 }
 
 .primary-button,
@@ -241,6 +243,30 @@ p {
 
 .slide-dots button.active {
   background: #55565a;
+}
+
+@keyframes heroCopyIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImageIn {
+  from {
+    opacity: 0.65;
+    transform: scale(1.025);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .intro-section {
@@ -566,6 +592,12 @@ p {
   height: 100%;
   display: flex;
   align-items: center;
+  animation: productMarquee 28s linear infinite;
+  will-change: transform;
+}
+
+.product-marquee:hover .product-marquee-track {
+  animation-play-state: paused;
 }
 
 .product-marquee img {
@@ -575,6 +607,16 @@ p {
   display: block;
   object-fit: contain;
   padding: 0;
+}
+
+@keyframes productMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-16.6667%);
+  }
 }
 
 .portfolio-section {
@@ -1688,6 +1730,10 @@ p {
     height: 74px;
   }
 
+  .product-marquee-track {
+    animation-duration: 24s;
+  }
+
   .research-band {
     padding-top: 70px;
   }
@@ -1894,5 +1940,13 @@ p {
   .floating-contact a {
     width: 44px;
     height: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy,
+  .hero-visual img,
+  .product-marquee-track {
+    animation: none;
   }
 }

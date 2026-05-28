@@ -436,6 +436,14 @@ function Header({ active, goTo, menuOpen, setMenuOpen }) {
 function HomePage({ goTo }) {
   const [activeSlide, setActiveSlide] = useState(0)
 
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveSlide((index) => (index + 1) % heroSlides.length)
+    }, 5000)
+
+    return () => window.clearInterval(timer)
+  }, [])
+
   const slide = heroSlides[activeSlide]
 
   return (
