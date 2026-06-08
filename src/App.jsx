@@ -30,8 +30,9 @@ const company = {
   roc: 'Ernakulam',
   status: 'Active',
   email: 'info@lenimenbiotech.com',
+  website: 'www.lenimen.com',
   landline: '04832633007',
-  phones: ['+91 9846400906', '+91 9744555075'],
+  phones: ['+91 98464 00906', '+91 97445 55075'],
 }
 
 const directors = [
@@ -52,11 +53,12 @@ const missionPoints = [
 const businessActivities = [
   'Pharmaceutical Formulations',
   'Generic Medicines',
+  'Nutraceuticals',
   'Tablets & Capsules',
   'Healthcare Products',
-  'Pharma Marketing & Distribution',
   'Institutional Supply',
-  'Biotech Healthcare Solutions',
+  'Pharma Marketing & Distribution',
+  'Third-Party Manufacturing Support',
 ]
 
 const strengths = [
@@ -86,35 +88,47 @@ const services = [
   ['service-tech-transfer.png', 'Technology Transfer & Dossier Preparation'],
   ['service-research.png', 'Contract Research & Manufacturing Services'],
   ['service-batch.png', 'Exhibit Batch & F&D Batch Formulation'],
-  ['service-contract.png', 'Contract Manufacturing'],
+  ['service-contract.png', 'Third-Party Manufacturing Support'],
   ['service-rd.png', 'DSIR Approved R&D Center'],
 ]
 
 const heroSlides = [
   {
-    kicker: '15 Years of Experience',
-    title: 'Committed to improving the Lives',
+    kicker: 'Pharmaceutical Marketing | Distribution | Healthcare Solutions',
+    title: 'Trusted Healthcare Solutions for a Healthier Tomorrow.',
+    subheading:
+      'Lenimen Biotech Pvt. Ltd. delivers quality pharmaceutical formulations, healthcare products, and institutional supply solutions through trusted manufacturing partnerships and ethical business practices.',
+    buttonLabel: 'Explore Products',
+    target: 'Products',
     image: 'hero-pharmacist-smiling.jpg',
   },
   {
-    kicker: 'Pharmaceutical Manufacturing Support',
-    title: 'Reliable Formulation Partnerships',
+    kicker: 'Research & Market Intelligence',
+    title: 'Driven by Innovation. Focused on Better Healthcare.',
+    subheading:
+      'We continuously evaluate therapeutic advancements, healthcare trends, and market opportunities to identify innovative pharmaceutical solutions that meet evolving patient and healthcare needs.',
+    buttonLabel: 'Learn More',
+    target: 'About Us',
     image: 'hero-pharmacist-checking.jpg',
   },
   {
-    kicker: 'Research & Innovation',
-    title: 'Research driven pharmaceutical support',
+    kicker: 'Over a Decade of Industry Experience',
+    title: 'Building Trust Through Quality and Reliability',
+    subheading:
+      'With extensive experience in pharmaceutical marketing, distribution, and institutional supply, Lenimen Biotech is committed to delivering dependable healthcare solutions across India.',
+    buttonLabel: 'Contact Our Team',
+    target: 'Contact Us',
     image: 'hero-tablets-capsules.jpg',
   },
 ]
 
 const trustMarkers = [
-  ['FDA', 'Referenced in the company PDF manufacturing credentials'],
-  ['MHRA', 'Referenced in the company PDF manufacturing credentials'],
-  ['NAFDAC', 'Referenced in the company PDF manufacturing credentials'],
-  ['GMP', 'Good manufacturing practice badge shown in the PDF'],
-  ['ISO 9001', 'Quality management badge shown in the PDF'],
-  ['ISO 14001', 'Environmental management badge shown in the PDF'],
+  ['Quality Systems', 'Manufacturing partner quality focus'],
+  ['Regulatory Standards', 'Regulatory and documentation discipline'],
+  ['Product Reliability', 'Consistent, dependable pharmaceutical supply'],
+  ['Safety Focus', 'Quality-aware sourcing and distribution practices'],
+  ['Partner Review', 'Reputed manufacturing and supply partnerships'],
+  ['Compliance Mindset', 'Ethical and responsible business practices'],
 ]
 
 const therapeuticAreas = [
@@ -215,7 +229,15 @@ const therapeuticAreas = [
   },
   {
     title: 'Pediatrics',
-    brands: ['Pediatrics range referenced in the PDF'],
+    brands: ['Pediatric healthcare formulations and product support'],
+  },
+  {
+    title: 'Gastroenterology',
+    brands: ['Pantolen', 'Pantolen D', 'Pantolen IV'],
+  },
+  {
+    title: 'Dermatology',
+    brands: ['Dermatology healthcare products and formulation support'],
   },
 ]
 
@@ -452,8 +474,9 @@ function HomePage({ goTo }) {
         <div className="hero-copy" key={slide.title}>
           <p className="eyebrow">{slide.kicker}</p>
           <h1>{slide.title}</h1>
-          <button className="primary-button" type="button" onClick={() => goTo('Contact Us')}>
-            Contact Us
+          <p className="hero-subheading">{slide.subheading}</p>
+          <button className="primary-button" type="button" onClick={() => goTo(slide.target)}>
+            {slide.buttonLabel}
           </button>
         </div>
         <div className="hero-visual" aria-hidden="true">
@@ -489,10 +512,13 @@ function CapabilityMapSection() {
     <section className="capability-map">
       <div className="capability-copy">
         <p className="eyebrow">Business Focus</p>
-        <h2>One connected pathway for pharmaceutical growth.</h2>
+        <h2>Integrated Pharmaceutical Business Solutions</h2>
         <p>
-          Lenimen&apos;s work spans formulations, generic medicines, healthcare products,
-          distribution, institutional supply, and biotech healthcare solutions.
+          Lenimen Biotech offers end-to-end pharmaceutical business support, from product sourcing
+          and formulation partnerships to marketing, distribution, and institutional supply. The
+          company serves as a pharma marketing company in India, pharmaceutical distributor in
+          Kerala, healthcare product supplier, and generic medicines supplier for professional
+          healthcare channels.
         </p>
       </div>
       <div className="capability-flow" aria-label="Lenimen business activities">
@@ -511,21 +537,22 @@ function IntroSection() {
     <section className="intro-section">
       <div className="intro-copy">
         <p>
-          <strong>{company.name}</strong> is a professionally managed pharmaceutical and
-          biotechnology company headquartered in Aluva, Kerala, India. Established in 2014, the
-          company is engaged in the marketing, distribution, and supply of high-quality
-          pharmaceutical formulations and healthcare products across various therapeutic segments.
-          With a commitment to quality, affordability, and customer satisfaction, Lenimen Biotech
-          delivers reliable healthcare solutions while maintaining ethical business practices and
-          regulatory compliance.
+          <strong>About Lenimen Biotech Pvt. Ltd.</strong> Lenimen Biotech Private Limited is a
+          professionally managed pharmaceutical and healthcare company headquartered in Aluva,
+          Kerala, India. Established in 2014, the company specializes in pharmaceutical marketing,
+          distribution, institutional supply, and healthcare product solutions. With a strong network
+          of manufacturing partners and healthcare professionals, Lenimen Biotech delivers
+          quality-assured pharmaceutical formulations across multiple therapeutic segments.
         </p>
         <div className="experience-row">
-          <div className="experience-box">15 Years of Experience</div>
+          <div className="experience-box">Over a Decade of Pharmaceutical Excellence</div>
           <ul className="trust-list">
-            <li>High quality products and service</li>
-            <li>Most trusted</li>
-            <li>Innovative healthcare products of international standard</li>
-            <li>Affordable prices</li>
+            <li>Quality-Assured Products</li>
+            <li>Ethical Business Practices</li>
+            <li>Trusted Distribution Network</li>
+            <li>Affordable Healthcare Solutions</li>
+            <li>Institutional Supply Expertise</li>
+            <li>Customer-Centric Service</li>
           </ul>
         </div>
       </div>
@@ -539,11 +566,11 @@ function CredibilitySection() {
     <section className="credibility-section">
       <div className="credibility-copy">
         <p className="eyebrow">Quality Network</p>
-        <h2>International quality products and services for the medical community.</h2>
+        <h2>Quality-Focused Manufacturing Partnerships</h2>
         <p>
-          Lenimen works with established manufacturing partners and quality-focused supply channels
-          to deliver dependable pharmaceutical products for doctors, institutions, distributors, and
-          patients.
+          Lenimen Biotech collaborates with reputed manufacturing partners that operate under
+          recognized quality systems and regulatory standards to ensure consistency, safety, and
+          product reliability.
         </p>
         <div className="proof-row">
           {trustMarkers.map(([label, title]) => (
@@ -580,33 +607,30 @@ function AssuranceSection() {
     <section className="assurance-section">
       <img className="doctor-image" src="/assets/doctor-consult.png" alt="Doctor consulting a patient" />
       <div className="assurance-copy">
-        <h2>We assure you the smile you&apos;ve always wanted.</h2>
+        <h2>Our Commitment to Better Healthcare</h2>
         <p>
-          We focus on scientific discoveries to deliver drugs and vaccines that will help millions of
-          people around the world. Our goal can only be achieved if quality healthcare reaches
-          people of all walks of life. Every moment we try to bring more quality and effective
-          medicines to the market.
+          At Lenimen Biotech, our mission is to improve healthcare accessibility through quality
+          pharmaceutical formulations and dependable supply chain solutions. We believe every patient
+          deserves access to safe, effective, and affordable healthcare products.
         </p>
         <div className="feature-row">
           <div className="feature">
             <UsersRound size={42} />
             <div>
-              <h3>Expert Team</h3>
+              <h3>Experienced Management</h3>
               <p>
-                The Lenimen team includes industry professionals who are passionate about their
-                work, excel in their field, and have a broad background in pharmaceutical
-                manufacturing.
+                Our leadership team combines extensive experience in pharmaceutical marketing,
+                healthcare distribution, procurement, and institutional supply management.
               </p>
             </div>
           </div>
           <div className="feature">
             <Smile size={42} />
             <div>
-              <h3>Happy Customers</h3>
+              <h3>Trusted Business Relationships</h3>
               <p>
-                Our success is measured by the results, and the most important thing is how our
-                clients feel about their experience with us. We strive for happy customers and
-                continued relationships.
+                We measure success through long-term partnerships with healthcare providers,
+                distributors, pharmacies, institutions, and procurement agencies.
               </p>
             </div>
           </div>
@@ -631,10 +655,10 @@ function PortfolioSection() {
     <section className="portfolio-section">
       <div className="section-heading">
         <p className="eyebrow">Product Portfolio</p>
-        <h2>Therapeutic areas referenced in the company PDF</h2>
+        <h2>Therapeutic Segments We Serve</h2>
         <p>
-          A broader portfolio across specialist and general medicine segments, presented here from
-          the supplied Lenimen PDF.
+          Our portfolio covers a broad range of therapeutic categories designed to meet the needs of
+          healthcare professionals and patients.
         </p>
       </div>
       <div className="portfolio-explorer">
@@ -683,16 +707,16 @@ function QualityJourneySection() {
 function ResearchSection() {
   return (
     <section className="research-band">
-      <span className="tab-label">Research & Innovation / Manufacturing</span>
+      <span className="tab-label">Research & Market Intelligence</span>
       <div className="research-panel">
         <div className="research-copy">
-          <h2>Research & Innovation</h2>
+          <h2>Research & Market Intelligence</h2>
           <p>
-            We have the potential to handle a broad spectrum of pharmaceutical research. In fact, we
-            will research to satisfy precise informational goals. Pharmaceutical businesses can
-            completely engage with LENIMEN BIOTECH PVT Ltd. and we will make sure that the services
-            utilized are researched, analyzed, and presented effectively which ultimately supports
-            in launching a product or service.
+            At Lenimen Biotech, we continuously evaluate emerging healthcare trends, therapeutic
+            advancements, and market opportunities to identify innovative pharmaceutical solutions.
+            Our team works closely with manufacturing partners and healthcare professionals to
+            ensure that products meet evolving medical needs, regulatory standards, and market
+            expectations.
           </p>
           <button type="button">Explore</button>
         </div>
@@ -739,9 +763,10 @@ function CompanyProfileSection() {
         <p className="eyebrow">Company Profile</p>
         <h2>Reliable healthcare solutions from Kerala</h2>
         <p>
-          Lenimen Biotech aims to expand its product portfolio, strengthen distribution networks,
-          and enhance its presence in the Indian pharmaceutical sector through innovation, quality
-          assurance, and strategic growth initiatives.
+          As a pharmaceutical company in Kerala and healthcare solutions company, Lenimen Biotech
+          supports hospitals, pharmacies, distributors, and institutions with pharmaceutical
+          formulations, generic medicines, healthcare products, and dependable institutional
+          medicine supply.
         </p>
       </div>
       <div className="profile-layout">
@@ -847,13 +872,13 @@ function ProductsPage() {
       <section className="products-hero">
         <div>
           <p className="eyebrow">Products</p>
-          <h1>Therapeutic portfolio</h1>
+          <h1>Pharmaceutical Formulations & Healthcare Products</h1>
           <p>
-            Product categories from the archived website, expanded with therapeutic area and brand
-            references extracted from the supplied company PDF.
+            Explore Lenimen Biotech&apos;s therapeutic portfolio across pharmaceutical formulations,
+            generic medicines, healthcare products, and institutional medicine supply categories.
           </p>
         </div>
-        <img src="/assets/pdf/therapeutic-areas.png" alt="Therapeutic areas from Lenimen PDF" />
+        <img src="/assets/pdf/therapeutic-areas.png" alt="Lenimen therapeutic segments and brands" />
       </section>
       <section className="products-section">
         <div className="product-search">
@@ -944,7 +969,7 @@ function ContactPage() {
         <div>
           <Globe2 size={34} />
           <h2>International manufacturing collaboration</h2>
-          <p>World class manufacturer tie-ups referenced in the supplied company PDF.</p>
+          <p>Reputed manufacturing partnerships supporting pharmaceutical formulations and healthcare products.</p>
         </div>
         <div>
           <FlaskConical size={34} />
@@ -1053,9 +1078,9 @@ function Footer({ goTo }) {
         <div className="footer-about">
           <h2>About Us</h2>
           <p>
-            <strong>{company.name}</strong> is a professionally managed pharmaceutical and
-            biotechnology company headquartered in Aluva, Kerala, engaged in marketing,
-            distribution, and supply of pharmaceutical formulations and healthcare products.
+            <strong>{company.shortName}</strong> is committed to delivering quality pharmaceutical
+            formulations, healthcare products, and institutional supply solutions through ethical
+            business practices and dependable partnerships.
           </p>
           <div className="socials" aria-label="Social links">
             {socialItems.map((item) => (
@@ -1087,19 +1112,23 @@ function Footer({ goTo }) {
           </div>
         </div>
         <div className="hours">
-          <h2>WorkingHours</h2>
+          <h2>Contact Info</h2>
           <dl>
             <div>
-              <dt>Mon - Fri-</dt>
-              <dd>9:00 AM - 7:00 PM</dd>
+              <dt>Corporate Office</dt>
+              <dd>Aluva, Ernakulam, Kerala - 683105</dd>
             </div>
             <div>
-              <dt>Saturday -</dt>
-              <dd>9:00 AM - 5:00 PM</dd>
+              <dt>Phone</dt>
+              <dd>{company.phones[0]}</dd>
             </div>
             <div>
-              <dt>Sunday-</dt>
-              <dd>Closed</dd>
+              <dt>Email</dt>
+              <dd>{company.email}</dd>
+            </div>
+            <div>
+              <dt>Website</dt>
+              <dd>{company.website}</dd>
             </div>
           </dl>
         </div>
