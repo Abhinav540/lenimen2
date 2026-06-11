@@ -23,13 +23,40 @@ body {
   overflow-x: hidden;
 }
 
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 14% 28%, rgb(0 170 166 / 5%), transparent 24%),
+    radial-gradient(circle at 88% 18%, rgb(227 24 115 / 4%), transparent 22%),
+    radial-gradient(circle at 72% 82%, rgb(13 42 105 / 4%), transparent 28%);
+  animation: pharmaFloat 18s ease-in-out infinite alternate;
+}
+
 button {
   font: inherit;
 }
 
 .site-header {
+  position: sticky;
+  top: 0;
   z-index: 10;
   background: var(--white);
+  transition: box-shadow 220ms ease, backdrop-filter 220ms ease, background 220ms ease;
+}
+
+.site-header.scrolled {
+  background: rgb(255 255 255 / 92%);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 30px rgb(7 19 58 / 10%);
 }
 
 .topbar {
@@ -66,6 +93,11 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: height 220ms ease;
+}
+
+.site-header.scrolled .nav-inner {
+  height: 88px;
 }
 
 .brand {
@@ -74,6 +106,11 @@ button {
   border: 0;
   background: transparent;
   cursor: pointer;
+  transition: transform 220ms ease, width 220ms ease;
+}
+
+.site-header.scrolled .brand {
+  transform: scale(0.92);
 }
 
 .brand img {
@@ -96,16 +133,36 @@ button {
 }
 
 .nav-links button {
+  position: relative;
   padding: 8px 0;
   color: var(--navy);
   font-size: 15px;
   font-weight: 800;
   text-transform: uppercase;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.nav-links button::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--teal);
+  transform: translateX(-50%) scaleX(0);
+  transform-origin: center;
+  transition: transform 220ms ease;
 }
 
 .nav-links button.active,
 .nav-links button:hover {
   color: var(--teal);
+}
+
+.nav-links button.active::after,
+.nav-links button:hover::after {
+  transform: translateX(-50%) scaleX(1);
 }
 
 .menu-toggle {
@@ -216,6 +273,37 @@ p {
   border-radius: 20px;
   font-size: 13px;
   font-weight: 700;
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.primary-button:hover,
+.footer-main button:hover,
+.research-copy button:hover {
+  transform: translateY(-2px);
+}
+
+.primary-button:hover {
+  background: var(--navy-2);
+  box-shadow: 0 12px 24px rgb(7 19 58 / 18%);
+}
+
+a,
+.contact-actions a,
+.career-actions a,
+.product-trigger,
+.floating-contact a {
+  transition:
+    color 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.contact-actions a:hover,
+.career-actions a:hover,
+.floating-contact a:hover {
+  transform: translateY(-2px);
 }
 
 .slide-dots {
@@ -266,6 +354,12 @@ p {
   }
 }
 
+@keyframes pharmaFloat {
+  to {
+    transform: translate3d(0, -16px, 0) scale(1.02);
+  }
+}
+
 .intro-section {
   width: min(var(--max), calc(100% - 36px));
   margin: 0 auto;
@@ -289,44 +383,55 @@ p {
 
 .experience-row {
   display: grid;
-  grid-template-columns: 230px minmax(0, 1fr);
-  gap: 32px;
-  align-items: center;
-  margin-top: 48px;
+  grid-template-columns: minmax(180px, 230px) minmax(0, 1fr);
+  gap: 24px;
+  align-items: start;
+  margin-top: 30px;
 }
 
 .experience-box {
-  border: 5px solid var(--teal);
-  padding: 43px 25px;
+  position: relative;
+  display: grid;
+  gap: 8px;
+  padding: 18px 20px;
   color: var(--navy);
-  font-size: 27px;
-  line-height: 1.08;
+  background: #f7fbfc;
+  border-left: 4px solid var(--teal);
+}
+
+.experience-box strong {
+  color: #0d2260;
+  font-size: 18px;
+  line-height: 1.18;
   font-weight: 900;
 }
 
 .trust-list {
   display: grid;
-  gap: 22px;
+  gap: 12px 22px;
   margin: 0;
   padding: 0;
   list-style: none;
   color: var(--navy);
-  font-size: 14px;
-  font-weight: 800;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .trust-list li {
   position: relative;
-  padding-left: 30px;
+  padding-left: 20px;
+  color: var(--navy);
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 800;
 }
 
 .trust-list li::before {
   content: ">";
   position: absolute;
   left: 0;
-  top: -4px;
+  top: -3px;
   color: var(--teal);
-  font-size: 24px;
+  font-size: 19px;
   font-weight: 900;
 }
 
@@ -338,11 +443,7 @@ p {
 .capability-map {
   position: relative;
   overflow: hidden;
-  padding: 88px max(18px, calc((100vw - var(--max)) / 2));
-  display: grid;
-  grid-template-columns: minmax(300px, 0.85fr) minmax(0, 1.15fr);
-  gap: 70px;
-  align-items: center;
+  padding: 92px max(18px, calc((100vw - var(--max)) / 2));
   color: var(--white);
   background:
     linear-gradient(135deg, rgb(6 18 56 / 96%), rgb(9 42 83 / 94%)),
@@ -360,10 +461,10 @@ p {
   mask-image: linear-gradient(90deg, transparent, black 18%, black 82%, transparent);
 }
 
-.capability-copy,
-.capability-flow {
+.capability-copy {
   position: relative;
   z-index: 1;
+  max-width: 760px;
 }
 
 .capability-copy h2 {
@@ -378,35 +479,6 @@ p {
   color: #d6e2ef;
   font-size: 16px;
   line-height: 1.8;
-}
-
-.capability-flow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-}
-
-.capability-flow span {
-  position: relative;
-  padding: 13px 17px;
-  color: #eaf6f8;
-  border: 1px solid rgb(184 227 230 / 34%);
-  background: rgb(255 255 255 / 7%);
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.capability-flow span:nth-child(3n + 1) {
-  border-color: rgb(0 170 166 / 55%);
-}
-
-.capability-flow span:nth-child(3n + 2) {
-  transform: translateY(18px);
-}
-
-.capability-flow span:nth-child(3n) {
-  transform: translateY(-12px);
 }
 
 .section-heading {
@@ -477,37 +549,78 @@ p {
 
 .services-band {
   background: var(--pale-blue);
-  padding: 32px 0 34px;
+  padding: 56px 0 78px;
 }
 
 .services-grid {
-  width: min(980px, calc(100% - 36px));
+  width: min(940px, calc(100% - 36px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
+  gap: 28px 24px;
+  align-items: stretch;
 }
 
 .service-tile {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
   background: var(--white);
   border: 1px solid #c4d0d6;
   box-shadow: 0 1px 5px rgb(0 0 0 / 18%);
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+  will-change: transform;
+}
+
+.service-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(180deg, rgb(7 19 58 / 0%) 36%, rgb(7 19 58 / 34%) 100%);
+  transition: opacity 240ms ease;
+}
+
+.service-tile:hover {
+  transform: translateY(-5px);
+  border-color: rgb(0 170 166 / 48%);
+  box-shadow: 0 18px 34px rgb(7 19 58 / 13%);
+}
+
+.service-tile:hover::before {
+  opacity: 1;
 }
 
 .service-tile img {
   width: 100%;
-  aspect-ratio: 1.47;
+  height: 184px;
   display: block;
   object-fit: cover;
+  transition: transform 520ms ease;
+  will-change: transform;
+}
+
+.service-tile:hover img {
+  transform: scale(1.05);
 }
 
 .service-tile h3 {
-  min-height: 118px;
+  position: relative;
+  z-index: 2;
+  min-height: 108px;
+  display: grid;
+  place-items: center;
   margin: 0;
-  padding: 30px 22px 20px;
+  padding: 20px 22px;
   color: var(--navy);
-  font-size: 19px;
-  line-height: 1.05;
+  font-size: 16px;
+  line-height: 1.08;
   text-align: center;
   text-transform: uppercase;
   font-weight: 900;
@@ -515,6 +628,7 @@ p {
 
 .assurance-section {
   position: relative;
+  margin-top: 0;
   display: grid;
   grid-template-columns: minmax(340px, 43%) minmax(0, 1fr);
   align-items: stretch;
@@ -665,6 +779,8 @@ p {
 }
 
 .area-tabs button {
+  position: relative;
+  overflow: hidden;
   border: 1px solid #d5e5e8;
   padding: 16px 18px;
   display: flex;
@@ -675,17 +791,53 @@ p {
   font-weight: 900;
   text-align: left;
   cursor: pointer;
+  transition:
+    color 220ms ease,
+    background 220ms ease,
+    border-color 220ms ease,
+    transform 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.area-tabs button::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--teal);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 220ms ease;
 }
 
 .area-tabs button::after {
   content: ">";
   color: var(--teal);
+  transition: transform 220ms ease, color 220ms ease;
 }
 
 .area-tabs button.active {
   color: var(--white);
   background: var(--navy);
   border-color: var(--navy);
+  box-shadow: 0 16px 35px rgb(7 19 58 / 16%);
+}
+
+.area-tabs button.active::before {
+  transform: scaleY(1);
+}
+
+.area-tabs button.active::after {
+  color: var(--white);
+}
+
+.area-tabs button:hover {
+  transform: translateX(4px);
+  border-color: rgb(0 170 166 / 55%);
+}
+
+.area-tabs button:hover::after {
+  transform: translateX(4px);
 }
 
 .area-detail {
@@ -695,6 +847,7 @@ p {
   background:
     linear-gradient(135deg, rgb(7 19 58 / 92%), rgb(13 42 105 / 86%)),
     url("/assets/research-lab.png") center/cover;
+  will-change: transform, opacity;
 }
 
 .area-detail svg {
@@ -722,16 +875,40 @@ p {
 }
 
 .journey-line {
+  --line-progress: 0;
+  position: relative;
   width: min(var(--max), calc(100% - 36px));
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  border-top: 2px solid #b8e3e6;
+  border-top: 0;
+}
+
+.journey-line::before,
+.journey-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  transform-origin: left center;
+}
+
+.journey-line::before {
+  background: #b8e3e6;
+}
+
+.journey-line::after {
+  background: linear-gradient(90deg, var(--teal), var(--pink));
+  transform: scaleX(var(--line-progress));
+  will-change: transform;
 }
 
 .journey-line article {
   position: relative;
   padding: 34px 26px 10px 0;
+  z-index: 1;
 }
 
 .journey-line article::before {
@@ -743,6 +920,14 @@ p {
   height: 15px;
   border-radius: 50%;
   background: var(--teal);
+  transform: scale(0.82);
+  transition: transform 260ms ease, box-shadow 260ms ease, background 260ms ease;
+}
+
+.journey-line article.active::before {
+  background: var(--pink);
+  transform: scale(1.18);
+  box-shadow: 0 0 0 8px rgb(227 24 115 / 11%);
 }
 
 .journey-line span {
@@ -1085,10 +1270,20 @@ p {
   font-size: 26px;
   line-height: 1;
   text-align: right;
+  transition: transform 220ms ease, color 220ms ease;
 }
 
 .product-accordion.open .product-trigger {
   color: #676767;
+}
+
+.product-accordion.open .product-trigger span:last-child {
+  color: var(--teal);
+  transform: rotate(180deg);
+}
+
+.product-trigger:hover {
+  color: var(--navy);
 }
 
 .medicine-list {
@@ -1096,6 +1291,7 @@ p {
   gap: 22px;
   padding: 16px 0 28px;
   color: #334155;
+  animation: medicinePanelIn 360ms ease both;
 }
 
 .medicine-list[hidden] {
@@ -1108,6 +1304,47 @@ p {
   font-size: 17px;
   line-height: 1.48;
   font-weight: 400;
+  animation: medicineItemIn 420ms ease both;
+}
+
+.medicine-list p:nth-child(2) {
+  animation-delay: 45ms;
+}
+
+.medicine-list p:nth-child(3) {
+  animation-delay: 90ms;
+}
+
+.medicine-list p:nth-child(4) {
+  animation-delay: 135ms;
+}
+
+.medicine-list p:nth-child(n + 5) {
+  animation-delay: 180ms;
+}
+
+@keyframes medicinePanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes medicineItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .spotlight-section {
@@ -1375,6 +1612,7 @@ p {
 .site-footer {
   color: #d4deef;
   background: #061238;
+  will-change: transform, opacity;
 }
 
 .footer-main {
@@ -1668,8 +1906,9 @@ p {
   }
 
   .experience-box {
+    min-height: auto;
     padding: 28px 22px;
-    font-size: 24px;
+    font-size: 22px;
   }
 
   .capsules {
@@ -1679,12 +1918,6 @@ p {
 
   .capability-map {
     padding: 68px 18px;
-  }
-
-  .capability-flow span,
-  .capability-flow span:nth-child(3n + 2),
-  .capability-flow span:nth-child(3n) {
-    transform: none;
   }
 
   .experience-row {
@@ -1710,6 +1943,11 @@ p {
 
   .journey-line {
     border-top: 0;
+  }
+
+  .journey-line::before,
+  .journey-line::after {
+    display: none;
   }
 
   .journey-line article {
@@ -1951,9 +2189,16 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-copy,
-  .hero-visual img,
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+
   .product-marquee-track {
-    animation: none;
+    transform: none !important;
   }
 }

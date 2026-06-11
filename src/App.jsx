@@ -1,4 +1,7 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import Lenis from 'lenis'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import {
   Activity,
   ChevronRight,
@@ -15,6 +18,8 @@ import {
   X,
 } from 'lucide-react'
 import './App.css'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const navItems = ['Home', 'About Us', 'Products', 'Careers', 'Contact Us']
 
@@ -377,9 +382,136 @@ const pageFromHash = () => {
   return navItems.find((item) => item.toLowerCase().replaceAll(' ', '-') === hash) || 'Home'
 }
 
+function usePharmaAnimations(page) {
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    if (!reduceMotion) {
+      const lenis = new Lenis({
+        duration: 1,
+        smoothWheel: true,
+        wheelMultiplier: 0.9,
+      })
+
+      let frameId
+      const raf = (time) => {
+        lenis.raf(time)
+        frameId = window.requestAnimationFrame(raf)
+      }
+      frameId = window.requestAnimationFrame(raf)
+      lenis.on('scroll', ScrollTrigger.update)
+
+      return () => {
+        window.cancelAnimationFrame(frameId)
+        lenis.destroy()
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const ctx = gsap.context(() => {
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+
+      ScrollTrigger.create({
+        start: 60,
+        end: 99999,
+        toggleClass: { targets: '.site-header', className: 'scrolled' },
+      })
+
+      if (reduceMotion) {
+        return
+      }
+
+      const fadeUp = (targets, trigger, options = {}) => {
+        gsap.from(targets, {
+          y: 40,
+          opacity: 0,
+          duration: options.duration || 0.8,
+          ease: 'power2.out',
+          stagger: options.stagger || 0.1,
+          scrollTrigger: {
+            trigger,
+            start: options.start || 'top 82%',
+            once: true,
+          },
+        })
+      }
+
+      fadeUp('.intro-copy > p, .experience-box, .trust-list li', '.intro-section', {
+        stagger: 0.12,
+      })
+      gsap.from('.capsules', {
+        x: 55,
+        scale: 0.95,
+        opacity: 0,
+        duration: 0.9,
+        ease: 'power2.out',
+        scrollTrigger: { trigger: '.intro-section', start: 'top 80%', once: true },
+      })
+
+      fadeUp('.capability-copy .eyebrow, .capability-copy h2, .capability-copy p', '.capability-map')
+
+      fadeUp('.service-tile', '.services-grid', { stagger: 0.12 })
+
+      fadeUp('.assurance-copy h2, .assurance-copy > p, .feature', '.assurance-section', {
+        stagger: 0.12,
+      })
+      gsap.to('.doctor-image', {
+        yPercent: -4,
+        scale: 1.04,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.assurance-section',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.7,
+        },
+      })
+
+      fadeUp('.portfolio-section .section-heading > *', '.portfolio-section', { stagger: 0.1 })
+      fadeUp('.area-tabs button', '.portfolio-explorer', { stagger: 0.08 })
+
+      gsap.from('.journey-line article', {
+        y: 34,
+        opacity: 0,
+        duration: 0.75,
+        ease: 'power2.out',
+        stagger: 0.14,
+        scrollTrigger: { trigger: '.journey-line', start: 'top 82%', once: true },
+      })
+      gsap.utils.toArray('.journey-line article').forEach((item) => {
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 78%',
+          once: true,
+          onEnter: () => item.classList.add('active'),
+        })
+      })
+      gsap.to('.journey-line', {
+        '--line-progress': 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.quality-journey',
+          start: 'top 75%',
+          end: 'bottom 70%',
+          scrub: 0.5,
+        },
+      })
+
+      fadeUp('.research-copy > *, .research-panel img', '.research-band', { stagger: 0.1 })
+      fadeUp('.site-footer', '.site-footer', { duration: 0.7 })
+    })
+
+    window.setTimeout(() => ScrollTrigger.refresh(), 100)
+    return () => ctx.revert()
+  }, [page])
+}
+
 function App() {
   const [page, setPage] = useState(pageFromHash)
   const [menuOpen, setMenuOpen] = useState(false)
+  usePharmaAnimations(page)
 
   useEffect(() => {
     const syncPage = () => setPage(pageFromHash())
@@ -521,13 +653,6 @@ function CapabilityMapSection() {
           healthcare channels.
         </p>
       </div>
-      <div className="capability-flow" aria-label="Lenimen business activities">
-        {businessActivities.map((activity, index) => (
-          <span key={activity} style={{ '--step': index }}>
-            {activity}
-          </span>
-        ))}
-      </div>
     </section>
   )
 }
@@ -545,14 +670,14 @@ function IntroSection() {
           quality-assured pharmaceutical formulations across multiple therapeutic segments.
         </p>
         <div className="experience-row">
-          <div className="experience-box">Over a Decade of Pharmaceutical Excellence</div>
+          <div className="experience-box">
+            <strong>Over a decade of pharmaceutical experience</strong>
+          </div>
           <ul className="trust-list">
-            <li>Quality-Assured Products</li>
-            <li>Ethical Business Practices</li>
-            <li>Trusted Distribution Network</li>
-            <li>Affordable Healthcare Solutions</li>
-            <li>Institutional Supply Expertise</li>
-            <li>Customer-Centric Service</li>
+            <li>Quality-assured products</li>
+            <li>Ethical business practices</li>
+            <li>Trusted distribution network</li>
+            <li>Institutional supply support</li>
           </ul>
         </div>
       </div>
@@ -650,6 +775,18 @@ function AssuranceSection() {
 function PortfolioSection() {
   const [activeArea, setActiveArea] = useState(therapeuticAreas[0].title)
   const selectedArea = therapeuticAreas.find((area) => area.title === activeArea) || therapeuticAreas[0]
+  const areaDetailRef = useRef(null)
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduceMotion || !areaDetailRef.current) return
+
+    gsap.fromTo(
+      areaDetailRef.current,
+      { x: 28, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.65, ease: 'power2.out' },
+    )
+  }, [activeArea])
 
   return (
     <section className="portfolio-section">
@@ -674,7 +811,7 @@ function PortfolioSection() {
             </button>
           ))}
         </div>
-        <div className="area-detail">
+        <div className="area-detail" ref={areaDetailRef} key={selectedArea.title}>
           <Activity size={42} />
           <h3>{selectedArea.title}</h3>
           <p>{selectedArea.brands.join(', ')}</p>
@@ -707,7 +844,6 @@ function QualityJourneySection() {
 function ResearchSection() {
   return (
     <section className="research-band">
-      <span className="tab-label">Research & Market Intelligence</span>
       <div className="research-panel">
         <div className="research-copy">
           <h2>Research & Market Intelligence</h2>
