@@ -35,13 +35,13 @@ const company = {
   year: '2014',
   type: 'Private Limited Company',
   industry: 'Pharmaceuticals & Biotechnology',
-  registeredOffice: 'IV/475-B, Meparambathu, Thottumugham, Aluva, Ernakulam, Kerala - 683105',
+  registeredOffice: '2/76B, CKK Building, Thottumugham, Aluva, Ernakulam, Kerala - 683105',
   gstin: '32AACCL6612N1ZH',
   roc: 'Ernakulam',
   status: 'Active',
   email: 'info@lenimenbiotech.com',
   website: 'www.lenimen.com',
-  landline: '04832633007',
+  landline: '0484 2633007',
   phones: ['+91 98464 00906', '+91 97445 55075'],
 }
 
@@ -145,19 +145,21 @@ const therapeuticAreas = [
   {
     title: 'Cardiology',
     brands: [
-      'Lentor 10/20',
-      'Lentor 40/80',
-      'Lentor CV',
-      'Lentor F',
+      'Lentor',
+      'Lentor-F',
       'Cili',
+      'Cili-T',
       'NIC 5mg',
       'Ivalen',
       'Betarun',
       'Telimen',
+      'Telimen H40',
       'Rosulen',
-      'Lengrel',
+      'Lengrel-75mg',
       'Parinex',
       'Lemet',
+      'Sitamen',
+      'Vasolazine',
       'Pantolen',
       'Pantolen-D',
       'Febulen',
@@ -168,18 +170,18 @@ const therapeuticAreas = [
     title: 'Nephrology',
     brands: [
       'Cili',
-      'Lentor 10/20',
-      'Lentor 40/80',
-      'Lentor CV',
-      'Lentor F',
+      'Lentor',
+      'Lentor-F',
       'NIC 5mg',
       'Ivalen',
       'Betarun',
       'Telimen',
+      'Telimen H40',
       'Rosulen',
-      'Lengrel',
+      'Lengrel-75mg',
       'Parinex',
       'Lemet',
+      'Sitamen',
       'Pantolen',
       'Pantolen-D',
       'Febulen',
@@ -189,23 +191,30 @@ const therapeuticAreas = [
   {
     title: 'General Medicine',
     brands: [
-      'Lentor 10/20',
-      'Lentor 40/80',
-      'Lentor CV',
-      'Lentor F',
+      'Lentor',
+      'Lentor-F',
       'Cili',
+      'Cili-T',
       'Telimen',
+      'Telimen H40',
       'Rosulen',
       'Lemet',
+      'Sitamen',
+      'Vasolazine',
       'Pantolen',
       'Pantolen-D',
       'Febulen',
       'Defalen',
-      'Lengrel',
+      'Lengrel-75mg',
       'Parinex',
       'NIC 5mg',
       'Ivalen',
       'Betarun',
+      'LUKA-LC',
+      'Bilaget',
+      'Bilaget M',
+      'ACBC',
+      'ACBC-N',
     ],
   },
   {
@@ -218,20 +227,19 @@ const therapeuticAreas = [
   },
   {
     title: 'ENT',
-    brands: ['Defalen', 'Pantolen', 'Pantolen-D'],
+    brands: ['Defalen', 'Pantolen', 'Pantolen-D', 'LUKA-LC', 'Bilaget', 'Bilaget M'],
   },
   {
     title: 'Neurology',
     brands: [
       'Parinex',
-      'Lengrel',
-      'Lentor 10/20',
-      'Lentor 40/80',
-      'Lentor CV',
-      'Lentor F',
+      'Lengrel-75mg',
+      'Lentor',
+      'Lentor-F',
       'Cili',
       'Rosulen',
       'Lemet',
+      'Sitamen',
       'Pantolen',
       'Pantolen-D',
       'Febulen',
@@ -243,7 +251,7 @@ const therapeuticAreas = [
   },
   {
     title: 'Gastroenterology',
-    brands: ['Pantolen', 'Pantolen-D', 'Pantolen IV 40mg'],
+    brands: ['Pantolen', 'Pantolen-D'],
   },
   {
     title: 'Dermatology',
@@ -259,13 +267,13 @@ const productGroups = [
       {
         title: 'Lipid Lowering Drug',
         medicines: [
-          'Lentor 10mg (Atorvastatin Calcium 10 mg)',
-          'Lentor 20mg (Atorvastatin Calcium 20 mg)',
-          'Lentor 40mg (Atorvastatin Calcium 40 mg)',
-          'Lentor 80mg (Atorvastatin Calcium 80 mg)',
-          'Lentor F (Atorvastatin 10 mg + Micronized Fenofibrate 160 mg)',
-          'Rosulen 5mg (Rosuvastatin 5/10/20/40 mg)',
-          'Rosulen 10mg (Rosuvastatin 5/10/20/40 mg)',
+          'Lentor 10mg (Atorvastatin 10mg)',
+          'Lentor 20mg (Atorvastatin 20mg)',
+          'Lentor 40mg (Atorvastatin 40mg)',
+          'Lentor 80mg (Atorvastatin 80mg)',
+          'Lentor F (Atorvastatin 10mg + Micronized Fenofibrate 160mg)',
+          'Rosulen 5mg (Rosuvastatin 5mg)',
+          'Rosulen 10mg (Rosuvastatin 10mg)',
         ],
       },
       {
@@ -274,7 +282,11 @@ const productGroups = [
       },
       {
         title: 'HCN Channel Blocker',
-        medicines: ['Ivalen 5mg (Ivabradine 5 mg)'],
+        medicines: ['Ivalen 5mg (Ivabradine 5mg)'],
+      },
+      {
+        title: 'Vasodilator',
+        medicines: ['Vasolazine (Isosorbide Dinitrate 20mg + Hydralazine 37.5mg)'],
       },
     ],
   },
@@ -285,10 +297,11 @@ const productGroups = [
       {
         title: 'Anti-Diabetics',
         medicines: [
-          'Lemet G1 (Glimepiride 1 mg + Metformin 500 mg)',
-          'Lemet G2 (Glimepiride 2 mg + Metformin 500 mg)',
-          'Depaglif 5mg (Dapagliflozin 5mg)',
-          'Depaglif 10mg (Dapagliflozin 10mg)',
+          'Lemet G1 (Glimepiride 1mg + Metformin 500mg)',
+          'Lemet G2 (Glimepiride 2mg + Metformin 500mg)',
+          'Sitamen 50mg (Sitagliptin 50mg)',
+          'Sitamen Plus (Sitagliptin 50mg + Metformin 500mg)',
+          'Sitamen Forte (Sitagliptin 50mg + Metformin 1000mg)',
         ],
       },
     ],
@@ -300,13 +313,13 @@ const productGroups = [
       {
         title: 'Anti-Coagulant',
         medicines: [
-          'Parinex 40mg (Enoxaparin Sodium Injection 40/60mg)',
-          'Parinex 60mg (Enoxaparin Sodium Injection 40/60mg)',
+          'Parinex 40mg (Enoxaparin Sodium Injection 40mg)',
+          'Parinex 60mg (Enoxaparin Sodium Injection 60mg)',
         ],
       },
       {
         title: 'Anti-Platelet',
-        medicines: ['Lengrel-75mg (Clopidogrel 75 mg)'],
+        medicines: ['Lengrel-75mg (Clopidogrel 75mg)'],
       },
     ],
   },
@@ -319,7 +332,6 @@ const productGroups = [
         medicines: [
           'Pantolen 40mg (Pantoprazole 40mg Tablets)',
           'Pantolen-D (Pantoprazole 40mg + Domperidone SR 30mg)',
-          'Pantolen IV 40mg (Pantoprazole Inj 40 mg)',
         ],
       },
     ],
@@ -332,12 +344,13 @@ const productGroups = [
         title: 'Anti-hypertensive',
         medicines: [
           'Telimen 40mg (Telmisartan Tablets IP 40mg)',
-          'Telimen-H 40mg (Telmisartan Tablets IP 40mg + Hydrochlorothiazide 12.5mg)',
+          'Telimen H40 (Telmisartan 40mg + Hydrochlorothiazide 12.5mg)',
           'Cili 5mg (Cilnidipine tablets 5mg)',
           'Cili 10mg (Cilnidipine tablets 10mg)',
           'Cili 20mg (Cilnidipine tablets 20mg)',
-          'Cili-T (Cilnidipine tablets 10mg + Telmisartan 40mg)',
-          'Betarun XL 25mg (Metoprolol succinate extended release 25 mg)',
+          'Cili-T (Cilnidipine 10mg + Telmisartan 40mg)',
+          'Betarun XL 25mg (Metoprolol Succinate 25mg)',
+          'Betarun XL 50mg (Metoprolol Succinate 50mg)',
         ],
       },
     ],
@@ -348,7 +361,7 @@ const productGroups = [
     sections: [
       {
         title: 'Anti-Hyperuricemic',
-        medicines: ['Febulen-40mg (Febuxostat 40mg)'],
+        medicines: ['Febulen 40mg (Febuxostat 40mg)'],
       },
     ],
   },
@@ -358,7 +371,7 @@ const productGroups = [
     sections: [
       {
         title: 'Corticosteroid',
-        medicines: ['Defalen 6mg (Deflazacort 6 mg)'],
+        medicines: ['Defalen 6mg (Deflazacort 6mg)'],
       },
     ],
   },
@@ -368,13 +381,17 @@ const productGroups = [
     sections: [
       {
         title: 'Anti-Histamine',
-        medicines: ['LUKA-LC (Levocetirizine 5mg + Montelukast 10mg tablet)'],
+        medicines: [
+          'LUKA-LC (Levocetirizine 5mg + Montelukast 10mg tablet)',
+          'Bilaget (Bilastine 20mg Tablet)',
+          'Bilaget M (Bilastine 20 mg + Montelukast 10mg)',
+        ],
       },
       {
         title: 'Bronchodilator',
         medicines: [
-          'ACBC 100MG (Acebrophylline capsule 100 MG)',
-          'ACBC 200MG (Acebrophylline SR Tablets 200 MG)',
+          'ACBC 100 (Acebrophylline SR 100mg)',
+          'ACBC 200 (Acebrophylline SR 200mg)',
           'ACBC-N (Acebrophylline 100mg + Acetylcysteine 600mg)',
         ],
       },
@@ -429,34 +446,44 @@ const categoryHeroImages = {
 }
 
 const productImageRules = [
-  [/Lentor 10mg/i, 'lentor-10.png'],
-  [/Lentor 20mg/i, 'lentor-10.png'],
-  [/Lentor 40mg/i, 'lentor_package.png'],
-  [/Lentor 80mg/i, 'lentor_package.png'],
-  [/Lentor CV/i, 'lentor_package.png'],
-  [/Lentor F/i, 'lentor_package.png'],
-  [/Cili 5mg/i, 'cili-5.png'],
-  [/Cili 10mg/i, 'cili-10.png'],
-  [/Cili 20mg/i, 'cili-20.png'],
-  [/Cili-T/i, 'cili-t.png'],
-  [/Cili/i, 'cili-10.png'],
-  [/Telimen-H/i, 'telimen-40.png'],
-  [/Telimen/i, 'telimen-40.png'],
-  [/Rosulen/i, 'rosulen-10.png'],
-  [/Parinex/i, 'parinex.png'],
+  [/Lentor 10mg/i, 'lentor-10mg.png'],
+  [/Lentor 20mg/i, 'lentor-20mg.png'],
+  [/Lentor 40mg/i, 'lentor-40mg.png'],
+  [/Lentor 80mg/i, 'lentor-80mg.jpg'],
+  [/Lentor F/i, 'lentor-f.jpg'],
+  [/Cili 5mg/i, 'cili-5mg.jpg'],
+  [/Cili 10mg/i, 'cili-10mg.jpg'],
+  [/Cili 20mg/i, 'cili-20mg.jpg'],
+  [/Cili-T/i, 'cili-t.jpg'],
+  [/Cili/i, 'cili-5-10-20-logo.png'],
+  [/Telimen H40/i, 'telimen-h40.jpg'],
+  [/Telimen/i, 'telimen-40mg.jpg'],
   [/LUKA-LC/i, 'luka-lc.png'],
-  [/NIC/i, 'nic-5.png'],
-  [/Pantolen\s*40/i, 'pantolen-40.png'],
+  [/Pantolen\s*40/i, 'pantolen-40mg.jpg'],
+  [/Betarun XL 25mg/i, 'betarun-xl-25mg.png'],
+  [/Betarun XL 50mg/i, 'betarun-xl-50mg.jpg'],
+  [/Betarun/i, 'betarun-xl-25mg.png'],
+  [/Lemet G1/i, 'lemet-g1.jpg'],
+  [/Lemet G2/i, 'lemet-g2.jpg'],
+  [/Defalen/i, 'defalen.png'],
+  [/ACBC 100/i, 'acbc-100.jpg'],
+  [/ACBC 200/i, 'acbc-200.jpg'],
+  [/ACBC-N/i, 'acbc-n.jpg'],
+  [/ACBC/i, 'acbc-100.jpg'],
+  [/Bilaget\s*M/i, 'bilaget-m.jpg'],
+  [/Bilaget/i, 'bilaget-20mg.jpg'],
+  [/Ivalen/i, 'ivalen-5mg.jpg'],
+  [/Vasolazine/i, 'vasolazine.jpg'],
+  [/Rosulen\s*5mg/i, 'rosulen-5mg.jpg'],
+  [/Rosulen\s*10mg/i, 'rosulen-10mg.jpg'],
+  [/NIC/i, 'nic-5mg.jpg'],
+  [/Sitamen\s*Plus/i, 'sitamen-plus.jpg'],
+  [/Sitamen\s*Forte/i, 'sitamen-forte.jpg'],
+  [/Sitamen\s*50mg/i, 'sitamen-50mg.jpg'],
+  [/Parinex\s*40mg/i, 'parinex-40mg.png'],
+  [/Parinex\s*60mg/i, 'parinex-60mg.png'],
+  [/Lengrel/i, 'lengrel-75mg.jpg'],
   [/Pantolen-D/i, 'pantolen-d.png'],
-  [/Pantolen\s*IV/i, 'pantolen-iv.png'],
-  [/Betarun/i, 'betarun-xl.png'],
-  [/Ivalen/i, 'lentor-10.png'],
-  [/Lemet/i, 'betarun-xl.png'],
-  [/Depaglif/i, 'nic-5.png'],
-  [/Lengrel/i, 'lentor-10.png'],
-  [/Febulen/i, 'telimen-40.png'],
-  [/Defalen/i, 'rosulen-10.png'],
-  [/ACBC/i, 'luka-lc.png'],
 ]
 
 const productAccentPalette = [
@@ -513,13 +540,14 @@ const getGroupProducts = (group) =>
         accent: getProductAccent(medicine),
         strength: getProductStrength(parsed.brand, parsed.composition),
         form: getProductForm(parsed.composition),
-        featured: index === 0 || /Lentor|Telimen|Pantolen|Cili|Depaglif/i.test(parsed.brand),
+        featured: index === 0 || /Lentor|Telimen|Pantolen|Cili|Sitamen|Vasolazine/i.test(parsed.brand),
       }
     }),
   )
 
 const pageFromHash = () => {
   const hash = window.location.hash.replace('#/', '').toLowerCase()
+  if (hash.startsWith('products')) return 'Products'
   return navItems.find((item) => item.toLowerCase().replaceAll(' ', '-') === hash) || 'Home'
 }
 
@@ -768,18 +796,6 @@ function App() {
 function Header({ active, goTo, menuOpen, setMenuOpen }) {
   return (
     <header className="site-header">
-      <div className="topbar">
-        <div className="topbar-inner">
-          <span className="topbar-address">
-            <MapPin size={14} style={{ marginRight: '6px', verticalAlign: 'middle', color: 'var(--teal)' }} />
-            {company.name}, Aluva, Ernakulam, Kerala - 683105
-          </span>
-          <span className="topbar-phone">
-            <Phone size={14} style={{ marginRight: '6px', verticalAlign: 'middle', color: 'var(--teal)' }} />
-            {company.phones[0]}
-          </span>
-        </div>
-      </div>
       <div className="nav-wrap">
         <div className="nav-inner">
           <button className="brand" type="button" onClick={() => goTo('Home')} aria-label="Lenimen home">
@@ -796,9 +812,6 @@ function Header({ active, goTo, menuOpen, setMenuOpen }) {
                 {item}
               </button>
             ))}
-            <button className="nav-search-btn" type="button" aria-label="Search" style={{ background: 'transparent', border: 0, cursor: 'pointer', color: 'var(--navy)', marginLeft: '10px' }}>
-              <Search size={18} />
-            </button>
           </nav>
           <button
             className="menu-toggle"
@@ -960,7 +973,7 @@ function ParinexLogo() {
     <div className="logo-card parinex">
       <div className="brand-line">
         <span className="brand-name">
-          Par<span className="char-i">i<svg className="droplet" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0C5 0 0 5.4 0 9C0 11.8 2.2 14 5 14C7.8 14 10 11.8 10 9C10 5.4 5 0 5 0Z" fill="#E11D48"/></svg></span>nex
+          Par<span className="char-i">i<svg className="droplet" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 0C5 0 0 5.4 0 9C0 11.8 2.2 14 5 14C7.8 14 10 11.8 10 9C10 5.4 5 0 5 0Z" fill="#E11D48" /></svg></span>nex
         </span>
         <span className="brand-tm">TM</span>
         <span className="strength-badge">40/60mg</span>
@@ -992,7 +1005,7 @@ function TelimenLogo() {
         <span className="brand-name-wrap">
           <span className="brand-name">Telimen</span>
           <svg className="telimen-arc" viewBox="0 0 100 20" fill="none">
-            <path d="M5 15C30 5 70 5 95 15" stroke="#E28C05" strokeWidth="2.5" strokeLinecap="round"/>
+            <path d="M5 15C30 5 70 5 95 15" stroke="#E28C05" strokeWidth="2.5" strokeLinecap="round" />
           </svg>
         </span>
         <span className="brand-tm">TM</span>
@@ -1010,7 +1023,7 @@ function LukaLcLogo() {
         <span className="brand-name-wrap">
           <span className="brand-name">LUKA-LC</span>
           <svg className="luka-arc" viewBox="0 0 120 20" fill="none">
-            <path d="M5 5C35 15 85 15 115 5" stroke="#D97706" strokeWidth="3" strokeLinecap="round"/>
+            <path d="M5 5C35 15 85 15 115 5" stroke="#D97706" strokeWidth="3" strokeLinecap="round" />
           </svg>
         </span>
         <span className="brand-tm">TM</span>
@@ -1047,20 +1060,6 @@ function Pantolen40Logo() {
   )
 }
 
-function PantolenIvLogo() {
-  return (
-    <div className="logo-card pantolen">
-      <div className="brand-line">
-        <span className="brand-name">
-          Pant<span className="square-o"></span>len
-        </span>
-        <span className="brand-tm">TM</span>
-        <span className="strength-badge purple-text">IV 40<sub>mg</sub></span>
-      </div>
-      <div className="brand-sub">Pantoprazole Inj 40 mg</div>
-    </div>
-  )
-}
 
 function PantolenDLogo() {
   return (
@@ -1072,6 +1071,66 @@ function PantolenDLogo() {
         <span className="brand-tm">TM</span>
       </div>
       <div className="brand-sub">Pantoprazole 40mg + Domperidone SR 30mg</div>
+    </div>
+  )
+}
+
+function SitamenLogo({ brand, composition }) {
+  const isPlus = brand.toLowerCase().includes('plus')
+  const isForte = brand.toLowerCase().includes('forte')
+  return (
+    <div className="logo-card sitamen">
+      <div className="brand-line">
+        <span className="brand-name">SITAMEN</span>
+        <span className="brand-tm">TM</span>
+        {isPlus && <span className="sitamen-badge plus">Plus</span>}
+        {isForte && <span className="sitamen-badge forte">Forte</span>}
+        {!isPlus && !isForte && <span className="sitamen-badge standard">50mg</span>}
+      </div>
+      <div className="brand-sub">{composition || 'Sitagliptin Tablets'}</div>
+    </div>
+  )
+}
+
+function VasolazineLogo() {
+  return (
+    <div className="logo-card vasolazine">
+      <div className="brand-line">
+        <span className="brand-name-wrap">
+          <span className="brand-name">Vasolazine</span>
+          <svg className="vasolazine-swoosh" viewBox="0 0 100 10" fill="none">
+            <path d="M5 2C30 8 70 8 95 2" stroke="#d97706" strokeWidth="2" strokeLinecap="round" />
+          </svg>
+        </span>
+        <span className="brand-tm">TM</span>
+      </div>
+      <div className="brand-sub">Isosorbide Dinitrate 20 mg + Hydralazine 37.5 mg</div>
+    </div>
+  )
+}
+
+function ProductMarquee({ className = '' }) {
+  return (
+    <div className={`product-marquee ${className}`} aria-label="Lenimen product range">
+      <div className="product-marquee-track">
+        {Array.from({ length: 4 }).map((_, groupIndex) => (
+          <div className="marquee-group" key={groupIndex}>
+            <img src="/assets/strip-lentor.png" alt="Lentor" />
+            <img src="/assets/strip-cili.png" alt="Cili" />
+            <img src="/assets/strip-parinex.png" alt="Parinex" />
+            <img src="/assets/strip-telimen.png" alt="Telimen" />
+            <img src="/assets/strip-betarun.png" alt="Betarun" />
+            <img src="/assets/strip-rosulen.png" alt="Rosulen" />
+            <img src="/assets/strip-pantolen.png" alt="Pantolen" />
+            <img src="/assets/strip-nic.png" alt="NIC" />
+            <img src="/assets/strip-lemet-g1.png" alt="Lemet" />
+            <img src="/assets/strip-lengrel.png" alt="Lengrel" />
+            <img src="/assets/strip-ivalen.png" alt="Ivalen" />
+            <img src="/assets/strip-febulen.png" alt="Febulen" />
+            <img src="/assets/strip-luka-lc.png" alt="Luka-LC" />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
@@ -1111,22 +1170,7 @@ function AssuranceSection() {
           </div>
         </div>
       </div>
-      <div className="product-marquee" aria-label="Lenimen product range">
-        <div className="product-marquee-track">
-          {Array.from({ length: 4 }).map((_, groupIndex) => (
-            <div className="marquee-group" key={groupIndex}>
-              <ParinexLogo />
-              <RosulenLogo />
-              <TelimenLogo />
-              <LukaLcLogo />
-              <NicLogo />
-              <Pantolen40Logo />
-              <PantolenIvLogo />
-              <PantolenDLogo />
-            </div>
-          ))}
-        </div>
-      </div>
+      <ProductMarquee />
     </section>
   )
 }
@@ -1226,6 +1270,7 @@ function AboutPage() {
     <>
       <IntroSection />
       <CredibilitySection />
+      <ProductMarquee className="standalone" />
       <CompanyProfileSection />
       <section className="management-section">
         <h1>Meet Our Management Team</h1>
@@ -1334,7 +1379,7 @@ function DirectorsSection() {
 const getMedicineDescription = (product) => {
   const sect = (product.section || '').toLowerCase()
   const brand = (product.brand || '').toLowerCase()
-  
+
   if (sect.includes('lipid') || brand.includes('lentor') || brand.includes('rosulen')) {
     return 'Reduces cholesterol and risk of heart disease and stroke.'
   }
@@ -1344,13 +1389,16 @@ const getMedicineDescription = (product) => {
   if (sect.includes('platelet') || brand.includes('lengrel') || brand.includes('aspimen')) {
     return 'Helps prevent blood clots and reduces risk of heart attack and stroke.'
   }
+  if (brand.includes('vasolazine')) {
+    return 'Combination vasodilator therapy for heart failure management.'
+  }
   if (sect.includes('anginal') || brand.includes('nic')) {
     return 'Helps prevent chest pain (angina) and improves exercise tolerance.'
   }
   if (sect.includes('hcn') || brand.includes('ivalen')) {
     return 'Used for symptomatic treatment of chronic stable angina pectoris.'
   }
-  if (sect.includes('diabetic') || brand.includes('lemet') || brand.includes('depaglif')) {
+  if (sect.includes('diabetic') || brand.includes('lemet') || brand.includes('sitamen')) {
     return 'Helps in blood sugar management and glycemic control.'
   }
   if (sect.includes('coagulant') || brand.includes('parinex')) {
@@ -1421,23 +1469,48 @@ const renderProductVisual = (product) => {
   if (brandLower.startsWith('luka-lc')) return <LukaLcLogo />
   if (brandLower.startsWith('nic')) return <NicLogo />
   if (brandLower.startsWith('pantolen-d')) return <PantolenDLogo />
-  if (brandLower.includes('pantolen iv')) return <PantolenIvLogo />
   if (brandLower.startsWith('pantolen')) return <Pantolen40Logo />
+  if (brandLower.startsWith('sitamen')) {
+    return <SitamenLogo brand={product.brand} composition={product.composition} />
+  }
+  if (brandLower.startsWith('vasolazine')) return <VasolazineLogo />
   if (brandLower.startsWith('lentor')) {
     return <LentorLogo strength={product.strength} composition={product.composition} />
   }
   return (
-    <GenericProductLogo 
-      brand={product.brand} 
-      strength={product.strength} 
-      composition={product.composition} 
-      section={product.section} 
+    <GenericProductLogo
+      brand={product.brand}
+      strength={product.strength}
+      composition={product.composition}
+      section={product.section}
     />
   )
 }
 
 function ProductsPage() {
-  const [selectedGroupTitle, setSelectedGroupTitle] = useState('')
+  const getCategoryFromHash = () => {
+    const hash = window.location.hash.replace('#/', '').toLowerCase()
+    const parts = hash.split('/')
+    if (parts[0] === 'products' && parts.length > 1) {
+      const slug = parts[1]
+      const group = productGroups.find(
+        (g) => g.title.toLowerCase().replaceAll(' ', '-') === slug
+      )
+      return group ? group.title : ''
+    }
+    return ''
+  }
+
+  const [selectedGroupTitle, setSelectedGroupTitle] = useState(getCategoryFromHash)
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      setSelectedGroupTitle(getCategoryFromHash())
+    }
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [])
+
   const [productQuery, setProductQuery] = useState('')
   const [catalogQuery, setCatalogQuery] = useState('')
   const [brandSearchQuery, setBrandSearchQuery] = useState('')
@@ -1451,7 +1524,7 @@ function ProductsPage() {
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false)
   const [loadingProducts, setLoadingProducts] = useState(false)
   const [clinicalProduct, setClinicalProduct] = useState(null)
-  
+
   // Keep track of stars clicked on cards locally
   const [starredProducts, setStarredProducts] = useState({})
 
@@ -1624,7 +1697,11 @@ function ProductsPage() {
   }
 
   const openCategory = (title) => {
-    setSelectedGroupTitle(title)
+    const slug = title.toLowerCase().replaceAll(' ', '-')
+    window.location.hash = `#/products/${slug}`
+  }
+
+  useEffect(() => {
     setIsSearchingAll(false)
     setGlobalSearchQuery('')
     setProductQuery('')
@@ -1637,8 +1714,7 @@ function ProductsPage() {
     setSelectedGroups([])
     setCurrentPage(1)
     scrollToTop()
-    window.requestAnimationFrame(() => scrollToTop())
-  }
+  }, [selectedGroupTitle])
 
   const handleSearchSubmit = (query) => {
     const trimmed = query.trim()
@@ -1656,6 +1732,7 @@ function ProductsPage() {
     }
 
     // Go to global search view
+    window.location.hash = '#/products'
     setIsSearchingAll(true)
     setGlobalSearchQuery(trimmed)
     setSelectedGroupTitle('')
@@ -1739,7 +1816,7 @@ function ProductsPage() {
               <div className="breadcrumb">
                 <button type="button" onClick={() => window.location.assign('#/home')}>Home</button>
                 <span className="breadcrumb-separator">/</span>
-                <button type="button" onClick={() => { setSelectedGroupTitle(''); setIsSearchingAll(false); setProductQuery(''); }}>Products</button>
+                <button type="button" onClick={() => { window.location.hash = '#/products'; }}>Products</button>
                 <span className="breadcrumb-separator">/</span>
                 <strong className="active-breadcrumb">{selectedGroup.title}</strong>
               </div>
@@ -1786,7 +1863,7 @@ function ProductsPage() {
               <div className="breadcrumb">
                 <button type="button" onClick={() => window.location.assign('#/home')}>Home</button>
                 <span className="breadcrumb-separator">/</span>
-                <button type="button" onClick={() => { setSelectedGroupTitle(''); setIsSearchingAll(false); setProductQuery(''); }}>Products</button>
+                <button type="button" onClick={() => { window.location.hash = '#/products'; }}>Products</button>
                 <span className="breadcrumb-separator">/</span>
                 <strong className="active-breadcrumb">Search Results</strong>
               </div>
@@ -1977,7 +2054,7 @@ function ProductsPage() {
                         key={productId}
                         style={{ '--product-accent': product.accent }}
                       >
-                        <button 
+                        <button
                           className={`card-star-btn ${isStarred ? 'starred' : ''}`}
                           type="button"
                           onClick={() => toggleStar(productId)}
@@ -2045,9 +2122,9 @@ function ProductsPage() {
         </section>
         <ProductHelpBanner />
         {clinicalProduct && (
-          <PharmaDetailModal 
-            product={clinicalProduct} 
-            onClose={() => setClinicalProduct(null)} 
+          <PharmaDetailModal
+            product={clinicalProduct}
+            onClose={() => setClinicalProduct(null)}
           />
         )}
       </>
@@ -2086,9 +2163,9 @@ function ProductsPage() {
                 aria-label="Search products"
               />
               {productQuery && (
-                <button 
-                  type="button" 
-                  className="search-clear-btn" 
+                <button
+                  type="button"
+                  className="search-clear-btn"
                   onClick={() => { setProductQuery(''); setShowSuggestions(false); }}
                   aria-label="Clear search"
                 >
@@ -2165,12 +2242,12 @@ function ProductsPage() {
           <div className="popular-searches">
             <span>Popular Searches:</span>
             {productGroups.slice(0, 5).map((group) => (
-              <button 
-                type="button" 
+              <button
+                type="button"
                 onClick={() => {
                   setShowSuggestions(false)
                   openCategory(group.title)
-                }} 
+                }}
                 key={group.title}
               >
                 {group.title}
@@ -2186,6 +2263,8 @@ function ProductsPage() {
         <ProductStat icon={ShieldCheck} value={yearsOfExcellence} label="Years of Excellence" />
         <ProductStat icon={UsersRound} value="Trusted" label="Healthcare Network" />
       </section>
+
+      <ProductMarquee className="standalone" />
 
       <section className="products-section">
         <div className="section-heading product-heading">
@@ -2326,11 +2405,18 @@ function ContactPage() {
         <p className="eyebrow">Contact Us</p>
         <h1>{company.shortName}</h1>
         <p>
-          {company.registeredOffice}
+          <a
+            href="https://maps.app.goo.gl/x8DYWqzmjwshdTeg8?g_st=awb"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="contact-address-link"
+          >
+            {company.registeredOffice}
+          </a>
         </p>
         <div className="contact-actions">
           <a href={`mailto:${company.email}`}>{company.email}</a>
-          <a href={`tel:${company.landline}`}>{company.landline}</a>
+          <a href={`tel:${company.landline.replaceAll(' ', '')}`}>{company.landline}</a>
           {company.phones.map((phone) => (
             <a href={`tel:${phone.replaceAll(' ', '')}`} key={phone}>{phone}</a>
           ))}
@@ -2387,7 +2473,7 @@ function CareersPage() {
         <div className="open-positions-box">
           <h3>Current Openings</h3>
           <p className="no-vacancies-msg">
-            There are no active openings at the moment. However, we are always eager to meet talented professionals. 
+            There are no active openings at the moment. However, we are always eager to meet talented professionals.
             You can submit your resume below, and we will contact you when a suitable vacancy arises.
           </p>
         </div>
@@ -2416,33 +2502,33 @@ function CareersPage() {
 
 function PharmaDetailModal({ product, onClose }) {
   if (!product) return null
-  
+
   const brand = product.brand || 'Lentor 20'
   const composition = product.composition || 'Atorvastatin Calcium 20 mg Tablets'
   const strength = product.strength || '20 mg'
   const form = product.form || 'Tablet'
   const section = product.section || 'Lipid Lowering Drug'
-  
+
   return (
-    <div 
-      className="pharma-detail-modal-overlay" 
+    <div
+      className="pharma-detail-modal-overlay"
       onClick={onClose}
       role="dialog"
       aria-modal="true"
     >
-      <div 
+      <div
         className="pharma-detail-modal-content"
         onClick={(e) => e.stopPropagation()}
       >
-        <button 
-          type="button" 
+        <button
+          type="button"
           className="modal-close-btn"
           onClick={onClose}
           aria-label="Close details modal"
         >
           <X size={20} />
         </button>
- 
+
         <div className="modal-header-banner">
           <div className="modal-badge-row">
             <span>{section}</span>
@@ -2457,8 +2543,8 @@ function PharmaDetailModal({ product, onClose }) {
             <div className="modal-body-section">
               <h3>Clinical Pharmacology</h3>
               <p>
-                {brand} acts as a highly effective therapeutic agent. Its active substance, {composition}, is designed 
-                to provide optimal bioavailability and targeted action. It acts selectively on metabolic pathways 
+                {brand} acts as a highly effective therapeutic agent. Its active substance, {composition}, is designed
+                to provide optimal bioavailability and targeted action. It acts selectively on metabolic pathways
                 to ensure controlled, premium therapeutic outcomes.
               </p>
             </div>
@@ -2478,8 +2564,8 @@ function PharmaDetailModal({ product, onClose }) {
             <div className="modal-body-section">
               <h3>Dosage & Administration</h3>
               <p>
-                The recommended dosage is typically 1 dose daily (e.g. {strength}), adjusted according to clinical indicators 
-                and physician assessment. Regular monitoring of liver function and therapeutic markers is recommended during 
+                The recommended dosage is typically 1 dose daily (e.g. {strength}), adjusted according to clinical indicators
+                and physician assessment. Regular monitoring of liver function and therapeutic markers is recommended during
                 prolonged therapy.
               </p>
             </div>
@@ -2487,7 +2573,7 @@ function PharmaDetailModal({ product, onClose }) {
             <div className="modal-body-section">
               <h3>Storage & Safety guidelines</h3>
               <p>
-                Store below 30°C in a dry place. Protect from moisture and direct sunlight. Keep out of reach of children. 
+                Store below 30°C in a dry place. Protect from moisture and direct sunlight. Keep out of reach of children.
                 Contraindicated in cases of acute hepatic impairment, hypersensitivity to components, and during pregnancy/lactation.
               </p>
             </div>
@@ -2574,7 +2660,7 @@ function Footer({ goTo }) {
             ))}
           </div>
         </div>
-        
+
         <div className="footer-column">
           <h2>Quick Links</h2>
           <ul>
@@ -2621,7 +2707,16 @@ function Footer({ goTo }) {
               <MapPin size={18} style={{ color: 'var(--teal)', flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <dt style={{ margin: 0 }}>Corporate Office</dt>
-                <dd style={{ margin: '4px 0 0 0' }}>Lenimen Biotech Pvt Ltd, Aluva, Ernakulam, Kerala 683105, India</dd>
+                <dd style={{ margin: '4px 0 0 0' }}>
+                  <a
+                    href="https://maps.app.goo.gl/x8DYWqzmjwshdTeg8?g_st=awb"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="footer-address-link"
+                  >
+                    Lenimen Biotech Pvt Ltd, 2/76B, CKK Building, Thottumugham, Aluva, Ernakulam, Kerala 683105, India
+                  </a>
+                </dd>
               </div>
             </div>
             <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', marginTop: '12px' }}>

@@ -101,7 +101,7 @@ button {
 }
 
 .brand {
-  width: 205px;
+  width: 280px;
   padding: 0;
   border: 0;
   background: transparent;
@@ -689,9 +689,9 @@ a,
 .product-marquee {
   position: absolute;
   left: 0;
-  bottom: -50px;
+  bottom: -40px;
   width: 100%;
-  height: 110px;
+  height: 80px;
   background: var(--white);
   overflow: hidden;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
@@ -703,10 +703,35 @@ a,
   mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
 }
 
+.product-marquee.standalone {
+  position: relative;
+  bottom: auto;
+  margin: 50px 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+/* About Us Page adjustments */
+.credibility-section + .product-marquee.standalone {
+  margin-top: -30px;
+  margin-bottom: 15px;
+}
+.product-marquee.standalone + .profile-section {
+  padding-top: 60px;
+}
+
+/* Products Page adjustments */
+.product-stat-band + .product-marquee.standalone {
+  margin-top: 40px;
+  margin-bottom: 0px;
+}
+.product-marquee.standalone + .products-section {
+  padding-top: 40px;
+}
+
 .product-marquee-track {
   display: flex;
   align-items: center;
-  animation: productMarquee 32s linear infinite;
+  animation: productMarquee 18s linear infinite;
   will-change: transform;
 }
 
@@ -714,11 +739,19 @@ a,
   animation-play-state: paused;
 }
 
+.product-marquee img {
+  height: 46px;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  object-fit: contain;
+}
+
 .marquee-group {
   display: flex;
   align-items: center;
-  gap: 75px;
-  padding: 0 37.5px;
+  gap: 110px;
+  padding: 0 55px;
   flex-shrink: 0;
 }
 
@@ -3607,6 +3640,16 @@ a,
   overflow-wrap: anywhere;
 }
 
+.contact-address-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.contact-address-link:hover {
+  color: var(--teal);
+}
+
 .contact-panel {
   display: grid;
   gap: 18px;
@@ -3889,11 +3932,8 @@ a,
 }
 
 .copyright {
-  min-height: 98px;
-  display: grid;
-  place-items: center;
   color: #cbd5e6;
-  background: #132d70;
+  background: transparent;
   font-size: 15px;
 }
 
@@ -4060,20 +4100,29 @@ a,
   }
 
   .mobile-filter-trigger {
-    width: min(var(--max), calc(100% - 36px));
-    min-height: 48px;
-    margin: 28px auto 0;
-    padding: 0 18px;
+    width: auto;
+    min-height: 38px;
+    margin: 20px 18px 10px auto;
+    padding: 0 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 9px;
+    gap: 8px;
     border: 1px solid #cfe2e7;
-    border-radius: 14px;
+    border-radius: 20px;
     color: var(--navy);
     background: var(--white);
-    font-weight: 900;
-    box-shadow: 0 12px 30px rgb(7 27 90 / 8%);
+    font-size: 13.5px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgb(7 27 90 / 4%);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .mobile-filter-trigger:hover,
+  .mobile-filter-trigger:active {
+    border-color: var(--teal);
+    color: var(--teal);
+    background: #f0fbfb;
   }
 
   .mobile-filter-trigger span {
@@ -4298,11 +4347,20 @@ a,
 
   .product-marquee {
     position: static;
-    height: 74px;
+    height: 64px;
+  }
+
+  .product-marquee img {
+    height: 34px;
+  }
+
+  .product-marquee .marquee-group {
+    gap: 60px;
+    padding: 0 30px;
   }
 
   .product-marquee-track {
-    animation-duration: 24s;
+    animation-duration: 12s;
   }
 
   .research-band {
@@ -4374,8 +4432,7 @@ a,
   }
 
   .category-product-hero {
-    padding-top: 48px;
-    padding-bottom: 48px;
+    display: none !important;
   }
 
   .category-hero-visual,
@@ -5076,19 +5133,23 @@ a,
 }
 
 .medicine-visual {
-  padding: 18px !important;
-  background: radial-gradient(circle at center, #ffffff 0%, #f4f6fa 100%) !important;
+  padding: 0 !important;
+  background: #ffffff !important;
   display: flex !important;
   justify-content: center !important;
   align-items: center !important;
   border-bottom: 1px solid rgba(226, 232, 240, 0.4) !important;
-  min-height: 165px !important;
+  min-height: 180px !important;
+  height: 180px !important;
   position: relative !important;
+  overflow: hidden !important;
 }
 
 .medicine-visual img {
-  max-height: 120px !important;
-  width: auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
   object-fit: contain !important;
   transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
@@ -5395,7 +5456,7 @@ a,
 /* 8. Corporate Footer Refinements */
 .site-footer {
   background: #07133a !important;
-  padding: 80px 0 40px !important;
+  padding: 32px 0 16px !important;
   color: #ffffff !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
@@ -5406,14 +5467,14 @@ a,
   display: grid !important;
   grid-template-columns: 1.2fr repeat(3, 0.8fr) 1.2fr !important;
   gap: 48px !important;
-  padding-bottom: 48px !important;
+  padding-bottom: 16px !important;
 }
 
 .footer-about p {
   color: #94a3b8 !important;
   font-size: 13.5px !important;
   line-height: 1.65 !important;
-  margin-bottom: 24px !important;
+  margin-bottom: 14px !important;
 }
 
 .footer-column h2,
@@ -5423,7 +5484,7 @@ a,
   text-transform: uppercase !important;
   letter-spacing: 1.5px !important;
   color: #ffffff !important;
-  margin-bottom: 24px !important;
+  margin-bottom: 14px !important;
   margin-top: 0 !important;
 }
 
@@ -5433,7 +5494,7 @@ a,
   margin: 0 !important;
   display: flex !important;
   flex-direction: column !important;
-  gap: 14px !important;
+  gap: 10px !important;
 }
 
 .footer-column button {
@@ -5512,7 +5573,7 @@ a,
   width: min(var(--max), calc(100% - 36px)) !important;
   margin: 0 auto !important;
   border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
-  padding-top: 30px !important;
+  padding-top: 12px !important;
   font-size: 13px !important;
   color: #94a3b8 !important;
   text-align: center !important;
@@ -5588,6 +5649,18 @@ a,
   display: inline-flex !important;
   align-items: center !important;
   gap: 6px !important;
+}
+
+.topbar-address-link {
+  color: inherit !important;
+  text-decoration: none;
+  transition: color 180ms ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.topbar-address-link:hover {
+  color: var(--teal) !important;
 }
 
 /* Header tweaks */
@@ -6095,6 +6168,16 @@ a,
   font-size: 11px !important;
 }
 
+.footer-address-link {
+  color: inherit !important;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.footer-address-link:hover {
+  color: var(--teal) !important;
+}
+
 /* ==========================================================================
    PROFESSIONAL SEARCH & POPULAR TAGS OVERRIDES
    ========================================================================== */
@@ -6411,4 +6494,47 @@ a,
   .suggestion-composition {
     font-size: 11.5px !important;
   }
+}
+
+/* Custom CSS Logos for Sitamen and Vasolazine */
+.sitamen .brand-name {
+  color: #c2410c !important; /* Dark orange/red */
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.5px !important;
+}
+.sitamen .sitamen-badge {
+  font-size: 9.5px !important;
+  font-weight: 800 !important;
+  padding: 1px 6px !important;
+  border-radius: 4px !important;
+  margin-left: 6px !important;
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  line-height: 1.1 !important;
+}
+.sitamen .sitamen-badge.standard {
+  background: #78350f !important; /* Brown */
+}
+.sitamen .sitamen-badge.plus {
+  background: #b91c1c !important; /* Red */
+  transform: skewX(-8deg) !important;
+}
+.sitamen .sitamen-badge.forte {
+  background: #991b1b !important; /* Darker red */
+  transform: skewX(-8deg) !important;
+}
+
+.vasolazine .brand-name {
+  color: #0f172a !important; /* Slate 900 */
+  font-family: 'Playfair Display', 'Georgia', serif !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.2px !important;
+  font-style: italic !important;
+}
+.vasolazine .vasolazine-swoosh {
+  width: 100% !important;
+  height: 6px !important;
+  display: block !important;
+  margin-top: -2px !important;
 }
