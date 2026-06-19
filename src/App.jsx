@@ -246,16 +246,8 @@ const therapeuticAreas = [
     ],
   },
   {
-    title: 'Pediatrics',
-    brands: ['Pediatric healthcare formulations and product support'],
-  },
-  {
     title: 'Gastroenterology',
     brands: ['Pantolen', 'Pantolen-D'],
-  },
-  {
-    title: 'Dermatology',
-    brands: ['Dermatology healthcare products and formulation support'],
   },
 ]
 
@@ -1175,6 +1167,82 @@ function AssuranceSection() {
   )
 }
 
+const getBrandLogo = (brand) => {
+  const b = brand.toLowerCase();
+  if (b.includes('lentor')) return '/assets/strip-lentor.png';
+  if (b.includes('cili')) return '/assets/strip-cili.png';
+  if (b.includes('parinex')) return '/assets/strip-parinex.png';
+  if (b.includes('telimen')) return '/assets/strip-telimen.png';
+  if (b.includes('betarun')) return '/assets/strip-betarun.png';
+  if (b.includes('rosulen')) return '/assets/strip-rosulen.png';
+  if (b.includes('pantolen')) return '/assets/strip-pantolen.png';
+  if (b.includes('nic')) return '/assets/strip-nic.png';
+  if (b.includes('lemet')) return '/assets/strip-lemet-g1.png';
+  if (b.includes('lengrel')) return '/assets/strip-lengrel.png';
+  if (b.includes('ivalen')) return '/assets/strip-ivalen.png';
+  if (b.includes('febulen')) return '/assets/strip-febulen.png';
+  if (b.includes('luka')) return '/assets/strip-luka-lc.png';
+  return null;
+}
+
+const renderMiniLogo = (brand) => {
+  const lower = brand.toLowerCase();
+  if (lower.includes('sitamen')) {
+    return (
+      <div className="mini-logo sitamen">
+        <span className="brand">SITAMEN</span>
+        <span className="tm">TM</span>
+      </div>
+    )
+  }
+  if (lower.includes('vasolazine')) {
+    return (
+      <div className="mini-logo vasolazine">
+        <span className="brand">Vasolazine</span>
+        <span className="tm">TM</span>
+      </div>
+    )
+  }
+  if (lower.includes('defalen')) {
+    return (
+      <div className="mini-logo defalen">
+        <span className="brand">DEFALEN</span>
+        <span className="tm">TM</span>
+      </div>
+    )
+  }
+  if (lower.includes('bilaget')) {
+    return (
+      <div className="mini-logo bilaget">
+        <span className="brand">Bilaget</span>
+        {lower.includes('m') && <span className="badge">M</span>}
+      </div>
+    )
+  }
+  if (lower.includes('acbc')) {
+    return (
+      <div className="mini-logo acbc">
+        <span className="brand">ACBC</span>
+        {lower.includes('n') && <span className="badge">N</span>}
+      </div>
+    )
+  }
+  return (
+    <div className="mini-logo generic">
+      <span className="brand">{brand}</span>
+    </div>
+  )
+}
+
+const getAreaIcon = (title) => {
+  const meta = productCategoryMeta[title];
+  if (meta && meta.icon) {
+    const IconComponent = meta.icon;
+    return <IconComponent size={42} />;
+  }
+  return <Activity size={42} />;
+}
+
 function PortfolioSection() {
   const [activeArea, setActiveArea] = useState(therapeuticAreas[0].title)
   const selectedArea = therapeuticAreas.find((area) => area.title === activeArea) || therapeuticAreas[0]
@@ -1190,6 +1258,8 @@ function PortfolioSection() {
       { x: 0, opacity: 1, duration: 0.65, ease: 'power2.out' },
     )
   }, [activeArea])
+
+  const isDescription = selectedArea.brands.length === 1 && selectedArea.brands[0].length > 30
 
   return (
     <section className="portfolio-section">
@@ -1215,9 +1285,29 @@ function PortfolioSection() {
           ))}
         </div>
         <div className="area-detail" ref={areaDetailRef} key={selectedArea.title}>
-          <Activity size={42} />
-          <h3>{selectedArea.title}</h3>
-          <p>{selectedArea.brands.join(', ')}</p>
+          <div className="area-detail-header">
+            {getAreaIcon(selectedArea.title)}
+            <h3>{selectedArea.title}</h3>
+          </div>
+          
+          {isDescription ? (
+            <p className="area-description-text">{selectedArea.brands[0]}</p>
+          ) : (
+            <div className="brands-grid">
+              {selectedArea.brands.map((brand) => {
+                const logoImg = getBrandLogo(brand);
+                return (
+                  <div key={brand} className="portfolio-brand-card">
+                    {logoImg ? (
+                      <img src={logoImg} alt={brand} className="portfolio-brand-img" />
+                    ) : (
+                      renderMiniLogo(brand)
+                    )}
+                  </div>
+                )
+              })}
+            </div>
+          )}
         </div>
       </div>
     </section>

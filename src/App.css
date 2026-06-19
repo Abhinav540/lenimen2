@@ -1060,30 +1060,163 @@ a,
 .area-detail {
   min-height: 100%;
   padding: 42px;
-  color: var(--white);
+  color: var(--navy);
   background:
-    linear-gradient(135deg, rgb(7 19 58 / 92%), rgb(13 42 105 / 86%)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(243, 244, 246, 0.94)),
     url("/assets/research-lab.png") center/cover;
+  border: 1px solid rgba(0, 170, 166, 0.15);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(7, 19, 58, 0.06);
   will-change: transform, opacity;
 }
 
 .area-detail svg {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
   color: var(--teal);
 }
 
 .area-detail h3 {
-  margin-bottom: 18px;
+  margin-bottom: 24px;
+  color: var(--navy);
   font-size: clamp(34px, 4vw, 54px);
   line-height: 1;
+  font-weight: 900;
 }
 
-.area-detail p {
+.area-detail p.area-description-text {
   margin: 0;
   max-width: 720px;
-  color: #dbe6ef;
+  color: var(--muted);
   font-size: 18px;
   line-height: 1.8;
+}
+
+/* Portfolio Brands Grid & Logo Cards */
+.area-detail-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 170, 166, 0.1);
+  padding-bottom: 20px;
+  margin-bottom: 28px;
+}
+
+.brands-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+}
+
+.portfolio-brand-card {
+  background: var(--white);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  box-shadow: 0 4px 10px rgba(7, 19, 58, 0.02);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  user-select: none;
+}
+
+.portfolio-brand-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(0, 170, 166, 0.08);
+  border-color: var(--teal);
+}
+
+.portfolio-brand-card img.portfolio-brand-img {
+  max-width: 100%;
+  max-height: 44px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Mini logo styles for text-based fallback cards */
+.mini-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+.mini-logo .brand {
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+}
+
+.mini-logo .tm {
+  font-size: 7px;
+  font-weight: 600;
+  vertical-align: super;
+  margin-left: 1px;
+  opacity: 0.7;
+}
+
+/* Custom styled mini-logos */
+.mini-logo.sitamen .brand {
+  color: #0284c7 !important; /* Sky Blue */
+  font-family: 'Montserrat', sans-serif !important;
+  letter-spacing: 0.5px !important;
+}
+
+.mini-logo.vasolazine .brand {
+  color: #d97706 !important; /* Amber swoosh color */
+  font-family: 'Poppins', sans-serif !important;
+  font-style: italic !important;
+  font-weight: 700 !important;
+}
+
+.mini-logo.defalen .brand {
+  color: #e11d48 !important; /* Rose / Red */
+  font-family: 'Inter', sans-serif !important;
+  font-weight: 900 !important;
+}
+
+.mini-logo.bilaget {
+  flex-direction: row !important;
+  gap: 4px !important;
+}
+.mini-logo.bilaget .brand {
+  color: #0d9488 !important; /* Teal */
+  font-family: 'Poppins', sans-serif !important;
+}
+.mini-logo.bilaget .badge {
+  background: #0d9488 !important;
+  color: white !important;
+  font-size: 10px !important;
+  padding: 1px 5px !important;
+  border-radius: 4px !important;
+  font-weight: bold !important;
+}
+
+.mini-logo.acbc {
+  flex-direction: row !important;
+  gap: 4px !important;
+}
+.mini-logo.acbc .brand {
+  color: #4f46e5 !important; /* Indigo */
+  font-family: 'Inter', sans-serif !important;
+}
+.mini-logo.acbc .badge {
+  background: #4f46e5 !important;
+  color: white !important;
+  font-size: 10px !important;
+  padding: 1px 5px !important;
+  border-radius: 4px !important;
+  font-weight: bold !important;
+}
+
+.mini-logo.generic .brand {
+  color: var(--navy) !important;
+  font-weight: 700 !important;
 }
 
 .quality-journey {
@@ -4056,17 +4189,19 @@ a,
   }
 
   .filter-panel {
-    position: fixed;
-    z-index: 120;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    width: min(360px, calc(100% - 42px));
-    max-height: none;
-    padding: 26px;
-    border-radius: 0 22px 22px 0;
-    transform: translateX(-105%);
-    transition: transform 300ms ease;
+    position: fixed !important;
+    z-index: 120 !important;
+    top: 0 !important;
+    left: 0 !important;
+    bottom: 0 !important;
+    width: min(360px, calc(100% - 42px)) !important;
+    max-height: none !important;
+    padding: 26px !important;
+    border-radius: 0 22px 22px 0 !important;
+    transform: translateX(-105%) !important;
+    transition: transform 300ms ease !important;
+    background: #ffffff !important;
+    box-shadow: 24px 0 50px rgba(7, 19, 58, 0.15) !important;
   }
 
   .filter-panel.open {
@@ -4245,7 +4380,7 @@ a,
     position: absolute;
     left: 0;
     right: 0;
-    top: 138px;
+    top: 100%;
     display: none;
     padding: 20px 28px 24px;
     background: var(--white);
@@ -4255,6 +4390,49 @@ a,
 
   .nav-links.open {
     display: grid;
+  }
+
+  /* Portfolio Explorer Tabs scrollable on mobile */
+  .area-tabs {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    gap: 10px !important;
+    padding: 4px 4px 14px 4px !important;
+    scrollbar-width: none !important;
+    -webkit-overflow-scrolling: touch !important;
+    grid-template-columns: none !important;
+  }
+
+  .area-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .area-tabs button {
+    flex: 0 0 auto !important;
+    padding: 12px 20px !important;
+    border-radius: 24px !important;
+    transform: none !important;
+    text-align: center !important;
+    border: 1px solid #d5e5e8 !important;
+    background: var(--white) !important;
+    color: var(--navy) !important;
+    box-shadow: 0 2px 8px rgba(7, 19, 58, 0.03) !important;
+  }
+
+  .area-tabs button::before {
+    display: none !important;
+  }
+
+  .area-tabs button::after {
+    display: none !important;
+  }
+
+  .area-tabs button.active {
+    background: var(--teal) !important;
+    color: var(--white) !important;
+    border-color: var(--teal) !important;
+    box-shadow: 0 8px 20px rgba(0, 170, 166, 0.25) !important;
   }
 
   .hero-section {
