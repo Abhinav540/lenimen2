@@ -45,38 +45,9 @@ const company = {
   phones: ['+91 98464 00906', '+91 97445 55075'],
 }
 
-const directors = [
-  'Pazhangat Kochumarakat Nazar',
-  'Shahid Rahman Manthedath',
-  'Abdul Rahman Parappath Shibili',
-  'Midhul Sasidharan Nair',
-  'Saji Subrahmanyan',
-]
 
-const missionPoints = [
-  'To provide safe, effective, and affordable pharmaceutical products.',
-  'To maintain the highest standards of quality and compliance.',
-  'To build long-term relationships with healthcare professionals, institutions, and distributors.',
-  'To expand market presence through ethical and sustainable business practices.',
-]
 
-const businessActivities = [
-  'Pharmaceutical Formulations',
-  'Generic Medicines',
-  'Nutraceuticals',
-  'Tablets & Capsules',
-  'Healthcare Products',
-  'Institutional Supply',
-  'Pharma Marketing & Distribution',
-  'Third-Party Manufacturing Support',
-]
 
-const strengths = [
-  ['Quality Commitment', 'Stringent quality standards in sourcing, manufacturing, and distribution processes.'],
-  ['Customer-Centric Approach', 'Long-term relationships with customers and healthcare partners remain a primary focus.'],
-  ['Ethical Business Practices', 'Transparent, professional, and integrity-led operations.'],
-  ['Growing Market Presence', 'Strengthening footprint in Kerala and expanding healthcare markets across India.'],
-]
 
 const careerFocus = [
   ['Pharma Marketing & Distribution', 'Field professionals who understand healthcare relationships and ethical market development.'],
@@ -85,6 +56,11 @@ const careerFocus = [
 ]
 
 const socialItems = ['facebook', 'twitter', 'linkedin', 'instagram']
+
+const socialLinks = {
+  facebook: 'https://www.facebook.com/lenimenbiotech',
+  instagram: 'https://www.instagram.com/lenimenbiotech/',
+}
 
 const qualityJourney = [
   ['Source', 'Ethical sourcing and manufacturer collaboration for dependable formulations.'],
@@ -320,7 +296,7 @@ const productGroups = [
     image: 'category-gastroenterology.png',
     sections: [
       {
-        title: 'Anti- Ulcerants',
+        title: 'Anti-Ulcerants',
         medicines: [
           'Pantolen 40mg (Pantoprazole 40mg Tablets)',
           'Pantolen-D (Pantoprazole 40mg + Domperidone SR 30mg)',
@@ -1361,110 +1337,13 @@ function AboutPage() {
       <IntroSection />
       <CredibilitySection />
       <ProductMarquee className="standalone" />
-      <CompanyProfileSection />
-      <section className="management-section">
-        <h1>Meet Our Management Team</h1>
-        <p>
-          The company is guided by an experienced management team and directors committed to
-          operational excellence and sustainable growth.
-        </p>
-      </section>
-      <DirectorsSection />
     </>
   )
 }
 
-function CompanyProfileSection() {
-  const corporateRows = [
-    ['Company Name', company.name],
-    ['CIN', company.cin],
-    ['Year of Incorporation', company.year],
-    ['Company Type', company.type],
-    ['Industry', company.industry],
-    ['Registered Office', company.registeredOffice],
-    ['GSTIN', company.gstin],
-    ['ROC', company.roc],
-    ['Status', company.status],
-  ]
 
-  return (
-    <section className="profile-section">
-      <div className="section-heading">
-        <p className="eyebrow">Company Profile</p>
-        <h2>Reliable healthcare solutions from Kerala</h2>
-        <p>
-          As a pharmaceutical company in Kerala and healthcare solutions company, Lenimen Biotech
-          supports hospitals, pharmacies, distributors, and institutions with pharmaceutical
-          formulations, generic medicines, healthcare products, and dependable institutional
-          medicine supply.
-        </p>
-      </div>
-      <div className="profile-layout">
-        <div className="profile-card">
-          <h3>Corporate Information</h3>
-          <dl>
-            {corporateRows.map(([label, value]) => (
-              <div key={label}>
-                <dt>{label}</dt>
-                <dd>{value}</dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-        <div className="profile-content">
-          <article>
-            <h3>Our Vision</h3>
-            <p>
-              To become a trusted and leading healthcare company by delivering quality
-              pharmaceutical products and innovative healthcare solutions that improve the quality
-              of life globally.
-            </p>
-          </article>
-          <article>
-            <h3>Our Mission</h3>
-            <ul>
-              {missionPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </article>
-          <article>
-            <h3>Core Business Activities</h3>
-            <div className="activity-tags">
-              {businessActivities.map((activity) => (
-                <span key={activity}>{activity}</span>
-              ))}
-            </div>
-          </article>
-        </div>
-      </div>
-      <div className="strength-grid">
-        {strengths.map(([title, copy]) => (
-          <article key={title}>
-            <h3>{title}</h3>
-            <p>{copy}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  )
-}
 
-function DirectorsSection() {
-  return (
-    <section className="directors-section">
-      <div className="section-heading">
-        <p className="eyebrow">Leadership</p>
-        <h2>Directors</h2>
-      </div>
-      <div className="director-list">
-        {directors.map((director) => (
-          <span key={director}>{director}</span>
-        ))}
-      </div>
-    </section>
-  )
-}
+
 
 const getMedicineDescription = (product) => {
   const sect = (product.section || '').toLowerCase()
@@ -2581,9 +2460,14 @@ function CareersPage() {
           <a href={`mailto:${company.email}?subject=Career%20Application%20-%20Lenimen%20Biotech`}>
             <Mail size={18} /> {company.email}
           </a>
-          <a href={`tel:${company.phones[0].replaceAll(' ', '')}`}>
-            <Phone size={18} /> {company.phones[0]}
+          <a href={`tel:${company.landline.replaceAll(' ', '')}`}>
+            <Phone size={18} /> {company.landline}
           </a>
+          {company.phones.map((phone) => (
+            <a href={`tel:${phone.replaceAll(' ', '')}`} key={phone}>
+              <Phone size={18} /> {phone}
+            </a>
+          ))}
         </div>
       </section>
     </>
@@ -2743,11 +2627,22 @@ function Footer({ goTo }) {
             Delivering trusted healthcare solutions through quality medicines and innovation for a healthier tomorrow.
           </p>
           <div className="socials" aria-label="Social links">
-            {socialItems.map((item) => (
-              <span key={item} title={item} className="social-icon-wrapper">
-                <SocialIcon type={item} />
-              </span>
-            ))}
+            {socialItems.map((item) => {
+              const href = socialLinks[item]
+              if (!href) return null
+              return (
+                <a
+                  key={item}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={item}
+                  className="social-icon-wrapper"
+                >
+                  <SocialIcon type={item} />
+                </a>
+              )
+            })}
           </div>
         </div>
 
@@ -2813,14 +2708,29 @@ function Footer({ goTo }) {
               <Phone size={18} style={{ color: 'var(--teal)', flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <dt style={{ margin: 0 }}>Phone</dt>
-                <dd style={{ margin: '4px 0 0 0' }}>{company.phones[0]}</dd>
+                <dd style={{ margin: '4px 0 0 0' }}>
+                  <a href={`tel:${company.landline.replaceAll(' ', '')}`} className="footer-address-link">
+                    {company.landline}
+                  </a>
+                </dd>
+                {company.phones.map((phone) => (
+                  <dd style={{ margin: '4px 0 0 0' }} key={phone}>
+                    <a href={`tel:${phone.replaceAll(' ', '')}`} className="footer-address-link">
+                      {phone}
+                    </a>
+                  </dd>
+                ))}
               </div>
             </div>
             <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start', marginTop: '12px' }}>
               <Mail size={18} style={{ color: 'var(--teal)', flexShrink: 0, marginTop: '2px' }} />
               <div>
                 <dt style={{ margin: 0 }}>Email</dt>
-                <dd style={{ margin: '4px 0 0 0' }}>{company.email}</dd>
+                <dd style={{ margin: '4px 0 0 0' }}>
+                  <a href={`mailto:${company.email}`} className="footer-address-link">
+                    {company.email}
+                  </a>
+                </dd>
               </div>
             </div>
           </dl>
