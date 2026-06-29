@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/Lenimen 2/src/index.css"],"sourcesContent":["@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap');\n\nhtml {\n  scroll-behavior: smooth;\n}\n\nbody {\n  min-width: 320px;\n}\n\nimg {\n  max-width: 100%;\n}\n"],"names":[],"mappings":"AAEA;;;;AAIA;;;;AAIA"}}]
-}
