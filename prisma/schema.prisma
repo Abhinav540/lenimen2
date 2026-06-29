@@ -1,0 +1,82 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// 1. Products Table
+model Product {
+  id          String   @id @default(uuid())
+  brand       String
+  composition String
+  section     String   // e.g. "Lipid Lowering Drug"
+  group       String   // e.g. "Cardiology"
+  strength    String   // e.g. "10 mg"
+  form        String   // e.g. "Tablet"
+  image       String?  // filename in /assets
+  accent      String   // Hex color
+  featured    Boolean  @default(false)
+  description String?  // Optional detailed info
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 2. Job Openings Table
+model Job {
+  id           String      @id @default(uuid())
+  title        String
+  location     String
+  type         String      // e.g. "Full-time", "Contract"
+  description  String      // Job details
+  requirements String      // Requirements
+  active       Boolean     @default(true)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  applicants   Applicant[]
+}
+
+// 3. Applicants (For Careers)
+model Applicant {
+  id          String   @id @default(uuid())
+  jobId       String?
+  job         Job?     @relation(fields: [jobId], references: [id], onDelete: SetNull)
+  jobTitle    String   // Cached or custom job title (for general applications)
+  name        String
+  email       String
+  phone       String
+  experience  String   // e.g. "3 years"
+  coverLetter String?
+  resumeUrl   String?  // Link/filename of uploaded resume
+  status      String   @default("New") // "New", "Reviewing", "Contacted", "Rejected", "Offered"
+  notes       String?  // Admin internal notes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 4. Contact Form Leads (CRM)
+model Lead {
+  id          String   @id @default(uuid())
+  name        String
+  email       String
+  phone       String
+  subject     String
+  message     String
+  status      String   @default("New") // "New", "Contacted", "In Progress", "Resolved"
+  notes       String?  // Admin internal notes
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// 5. News & Press Releases Table
+model News {
+  id          String   @id @default(uuid())
+  title       String
+  content     String
+  image       String?
+  publishedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
